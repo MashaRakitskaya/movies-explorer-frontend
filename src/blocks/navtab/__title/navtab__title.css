@@ -4,4 +4,23 @@
     line-height: 58px;
     margin: 0px;
     color: #FFFFFF;
+    min-width: 300px;
+}
+
+@media (max-width: 780px) {
+    .navtab__title {
+        padding-top: 48px;
+        font-size: 40px;
+        line-height: 50px;
+        text-align: center;
+    }
+}
+  
+@media (max-width: 400px) {
+    .navtab__title {
+        padding-top: 44px;
+        font-size: 30px;
+        line-height: 38px;
+        letter-spacing: -0.04em;
+    }
 }

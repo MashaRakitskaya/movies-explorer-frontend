@@ -7,4 +7,19 @@
     padding-top: 36px;
     padding-bottom: 146px;
     opacity: 0.5;
+    width: 260px;
+}
+
+@media (max-width: 780px) {
+    .navtab__text {
+        padding-top: 22px;
+        text-align: center;
+    }
+}
+  
+@media (max-width: 400px) {
+    .navtab__text {
+        padding-top: 24px;
+        padding-bottom: 80px;
+    }
 }
