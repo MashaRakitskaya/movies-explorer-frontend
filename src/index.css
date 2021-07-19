@@ -14,3 +14,18 @@
 @import url(./blocks/navtab/__text/navtab__text.css);
 @import url(./blocks/navtab/__button/navtab__button.css);
 @import url(./blocks/navtab/__img/navtab__img.css);
+
+@import url(./blocks/about-project/about-project.css);
+@import url(./blocks/about-project/__box/about-project__box.css);
+@import url(./blocks/about-project/__container/about-project__container.css);
+@import url(./blocks/about-project/__header/about-project__header.css);
+@import url(./blocks/about-project/__subtitle/about-project__subtitle.css);
+@import url(./blocks/about-project/__title/about-project__title.css);
+
+@import url(./blocks/time-line/time-line.css);
+@import url(./blocks/time-line/__backend-part/time-line__backend-part.css);
+@import url(./blocks/time-line/__backend/time-line__backend.css);
+@import url(./blocks/time-line/__first-week/time-line__first-week.css);
+@import url(./blocks/time-line/__four-weeks/time-line__four-weeks.css);
+@import url(./blocks/time-line/__frontend-part/time-line__frontend-part.css);
+@import url(./blocks/time-line/__frontend/time-line__frontend.css);
