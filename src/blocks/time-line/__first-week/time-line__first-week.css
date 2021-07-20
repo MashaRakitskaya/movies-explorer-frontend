@@ -2,7 +2,19 @@
     font-weight: normal;
     font-size: 14px;
     line-height: 17px;
-    text-align: center;
     color: #000000;
     margin: 0px;
+    height: 36px;
+    background: #3DDC84;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 400px) {
+    .time-line__first-week {
+        font-size: 11px;
+        line-height: 13px;
+    }
 }

@@ -5,4 +5,16 @@
     text-align: center;
     color: #FFFFFF;
     margin: 0px;
+    height: 36px;
+    background: #303030;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 400px) {
+    .time-line__four-weeks  {
+        font-size: 11px;
+        line-height: 13px;
+    }
 }

@@ -5,4 +5,15 @@
     text-align: center;
     color: #8B8B8B;
     margin: 0px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 400px) {
+    .time-line__backend {
+        font-size: 11px;
+        line-height: 13px;
+    }
 }

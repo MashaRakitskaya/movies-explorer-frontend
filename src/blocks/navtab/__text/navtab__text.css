@@ -4,22 +4,22 @@
     line-height: 16px;
     color: #FFFFFF;
     margin: 0px;
-    padding-top: 36px;
-    padding-bottom: 146px;
+    margin-top: 36px;
+    margin-bottom: 146px;
     opacity: 0.5;
     width: 260px;
 }
 
 @media (max-width: 780px) {
     .navtab__text {
-        padding-top: 22px;
+        margin-top: 22px;
         text-align: center;
     }
 }
   
 @media (max-width: 400px) {
     .navtab__text {
-        padding-top: 24px;
-        padding-bottom: 80px;
+        margin-top: 24px;
+        margin-bottom: 80px;
     }
 }
