@@ -1,5 +1,5 @@
-import React from 'react';
-import landinglogo from '../../images/landing-logo.svg';
+import React from "react";
+import landinglogo from "../../images/landing-logo.svg";
 
 function NavTab() {
   return (

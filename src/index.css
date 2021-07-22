@@ -18,7 +18,6 @@
 @import url(./blocks/about-project/about-project.css);
 @import url(./blocks/about-project/__box/about-project__box.css);
 @import url(./blocks/about-project/__container/about-project__container.css);
-@import url(./blocks/about-project/__header/about-project__header.css);
 @import url(./blocks/about-project/__subtitle/about-project__subtitle.css);
 @import url(./blocks/about-project/__title/about-project__title.css);
 
@@ -29,3 +28,15 @@
 @import url(./blocks/time-line/__four-weeks/time-line__four-weeks.css);
 @import url(./blocks/time-line/__frontend-part/time-line__frontend-part.css);
 @import url(./blocks/time-line/__frontend/time-line__frontend.css);
+
+@import url(./blocks/techs/techs.css);
+@import url(./blocks/techs/__title/techs__title.css);
+@import url(./blocks/techs/__text/techs__text.css);
+@import url(./blocks/techs/__box/techs__box.css);
+@import url(./blocks/techs/__list-box/techs__list-box.css);
+@import url(./blocks/techs/__list/techs__list.css);
+@import url(./blocks/techs/__list-item/techs__list-item.css);
+
+
+@import url(./blocks/section-header/section-header.css);
+

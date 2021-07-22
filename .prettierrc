@@ -10,12 +10,12 @@
     "quoteProps": "as-needed",
     "requirePragma": false,
     "semi": true,
-    "singleQuote": true,
+    "singleQuote": false,
     "trailingComma": "es5",
     "useTabs": false,
     "vueIndentScriptAndStyle": false,
     "printWidth": 80,
     "tabWidth": 2,
     "rangeStart": 0,
-    "endOfLine": "lf"
+    "endOfLine": "auto"
 }
