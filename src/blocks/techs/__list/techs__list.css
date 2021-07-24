@@ -7,14 +7,8 @@
     padding: 0px;
 }
 
-/* @media (max-width: 780px) {
+@media (max-width: 788px) {
     .techs__list {
-        padding-top: 83px;
+        width: 178px;
     }
 }
-  
-@media (max-width: 400px) {
-    .techs__list {
-        padding-top: 50px;
-    }
-} */
