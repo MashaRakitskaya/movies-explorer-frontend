@@ -1,0 +1,24 @@
+.about-me__networks-item {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+    text-decoration: none;
+    margin: 0px;
+    margin-right: 20px;
+}
+
+.about-me__networks-item:hover {
+    opacity: 0.6;
+}
+
+.about-me__networks-item:last-of-type{
+    margin-right: 0px;
+}
+
+@media (max-width: 400px) {
+    .about-me__networks-item {
+        margin-right: 26px;
+    }
+}

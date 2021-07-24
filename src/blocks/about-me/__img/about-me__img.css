@@ -1,0 +1,21 @@
+.about-me__img {
+    object-fit: cover;
+    border-radius: 10px;
+    width: 270px;
+    height: 327px;
+}
+
+@media (max-width: 780px) {
+    .about-me__img {
+        width: 255px;
+        height: 307px;
+    }
+}
+  
+@media (max-width: 400px) {
+    .about-me__img {
+        width: 292px;
+        height: 352px;
+        margin-bottom: 40px;
+    }
+}

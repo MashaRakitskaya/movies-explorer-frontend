@@ -1,0 +1,26 @@
+.about-me {
+    min-height: 424px;
+    background: #202020;
+    padding-left: 70px;
+    padding-right: 70px;
+    padding-top: 110px;
+    padding-bottom: 100px;
+}
+
+@media (max-width: 780px) {
+    .about-me {
+        padding-top: 90px;
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-bottom: 90px;
+    }
+}
+  
+@media (max-width: 400px) {
+    .about-me {
+        padding-top: 70px;
+        padding-bottom: 69px;
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+}
