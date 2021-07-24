@@ -1,0 +1,22 @@
+.footer {
+    padding-top: 79px;
+    padding-left: 70px;
+    padding-right: 70px;
+    padding-bottom: 20px;
+    background: #202020;
+}
+
+@media (max-width: 780px) {
+    .footer {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+  
+@media (max-width: 400px) {
+    .footer {
+        padding-bottom: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}

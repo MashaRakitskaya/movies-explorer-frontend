@@ -4,6 +4,7 @@ import Header from "./Header";
 import Register from "./Register";
 import Login from "./Login";
 import Main from "./Main/Main";
+import Footer from "./Footer";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -25,6 +26,7 @@ function App() {
             <Login />
           </Route>
         </Switch>
+        <Footer />
 
         {/* </CurrentUserContext.Provider> */}
       </div>

@@ -1,0 +1,23 @@
+.portfolio__list-title {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 50px;
+    letter-spacing: -0.04em;
+    color: #FFFFFF;
+    margin: 0px;
+    padding-bottom: 19px;
+}
+
+@media (max-width: 780px) {
+    .portfolio__list-title {
+        font-size: 28px;
+    }
+}
+  
+@media (max-width: 400px) {
+    .portfolio__list-title {
+        font-size: 18px;
+        line-height: 28px;
+    }
+}

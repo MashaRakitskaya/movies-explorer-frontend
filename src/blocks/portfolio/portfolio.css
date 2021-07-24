@@ -4,7 +4,7 @@
     padding-left: 70px;
     padding-right: 70px;
     padding-top: 100px;
-    padding-bottom: 115px;
+    padding-bottom: 125px;
 }
 
 @media (max-width: 780px) {
@@ -12,13 +12,13 @@
         padding-top: 90px;
         padding-left: 50px;
         padding-right: 50px;
-        padding-bottom: 80px;
+        padding-bottom: 90px;
     }
 }
   
 @media (max-width: 400px) {
     .portfolio {
-        padding-top: 70px;
+        padding-top: 69px;
         padding-bottom: 70px;
         padding-left: 14px;
         padding-right: 14px;

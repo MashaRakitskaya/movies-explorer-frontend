@@ -51,3 +51,16 @@
 @import url(./blocks/about-me/__profession/about-me__profession.css);
 
 @import url(./blocks/portfolio/portfolio.css);
+@import url(./blocks/portfolio/__header/portfolio__header.css);
+@import url(./blocks/portfolio/__list-img/portfolio__list-img.css);
+@import url(./blocks/portfolio/__list-item/portfolio__list-item.css);
+@import url(./blocks/portfolio/__list-title/portfolio__list-title.css);
+@import url(./blocks/portfolio/__list/portfolio__list.css);
+
+@import url(./blocks/footer/footer.css);
+@import url(./blocks/footer/__container/footer__container.css);
+@import url(./blocks/footer/__list-item-anchor/footer__list-item-anchor.css);
+@import url(./blocks/footer/__list-item/footer__list-item.css);
+@import url(./blocks/footer/__list/footer__list.css);
+@import url(./blocks/footer/__title/footer__title.css);
+@import url(./blocks/footer/__year/footer__year.css);

@@ -1,0 +1,16 @@
+.footer__year {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    color: #FFFFFF;
+    margin: 0px;
+}
+
+@media (max-width: 400px) {
+    .footer__year {
+        margin-top: 30px;
+        font-size: 12px;
+        line-height: 15px;
+    }
+}
