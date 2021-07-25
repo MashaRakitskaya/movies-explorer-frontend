@@ -79,3 +79,8 @@
 
 @import url(./blocks/registration-question/registration-question.css);
 @import url(./blocks/registration-question/__link/registration-question__link.css);
+
+@import url(./blocks/page-not-found/page-not-found.css);
+@import url(./blocks/page-not-found/__button/page-not-found__button.css);
+@import url(./blocks/page-not-found/__text/page-not-found__text.css);
+@import url(./blocks/page-not-found/__title/page-not-found__title.css);

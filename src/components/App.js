@@ -5,6 +5,7 @@ import Register from "./Register";
 import Login from "./Login";
 import Main from "./Main/Main";
 import Footer from "./Footer";
+import PageNotFound from "./PageNotFound";
 
 function App() {
   const [loggedIn] = useState(false);
@@ -26,6 +27,10 @@ function App() {
           </Route>
           <Route path='/signin'>
             <Login />
+          </Route>
+
+          <Route path='/404'>
+            <PageNotFound />
           </Route>
         </Switch>
         <Route exact path={["/"]}>
