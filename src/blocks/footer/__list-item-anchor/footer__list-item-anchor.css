@@ -5,6 +5,7 @@
     line-height: 16px;
     color: #FFFFFF;
     text-decoration: none;
+    transition: opacity 0.2s ease;
 }
 .footer__list-item-anchor:hover {
     opacity: 0.6;

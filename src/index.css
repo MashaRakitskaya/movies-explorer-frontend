@@ -13,6 +13,7 @@
 @import url(./blocks/navtab/__title/navtab__title.css);
 @import url(./blocks/navtab/__text/navtab__text.css);
 @import url(./blocks/navtab/__button/navtab__button.css);
+@import url(./blocks/navtab/__button-anchor/navtab__button-anchor.css);
 @import url(./blocks/navtab/__img/navtab__img.css);
 
 @import url(./blocks/about-project/about-project.css);
@@ -54,6 +55,7 @@
 @import url(./blocks/portfolio/__header/portfolio__header.css);
 @import url(./blocks/portfolio/__list-img/portfolio__list-img.css);
 @import url(./blocks/portfolio/__list-item/portfolio__list-item.css);
+@import url(./blocks/portfolio/__list-item-anchor/portfolio__list-item-anchor.css);
 @import url(./blocks/portfolio/__list-title/portfolio__list-title.css);
 @import url(./blocks/portfolio/__list/portfolio__list.css);
 

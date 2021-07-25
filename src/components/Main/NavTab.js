@@ -11,7 +11,11 @@ function NavTab() {
         <p className='navtab__text'>
           Листайте ниже, чтобы узнать больше про этот проект и его создателя.
         </p>
-        <button className='navtab__button'>Узнать больше</button>
+        <button className='navtab__button'>
+          <a className='navtab__button-anchor' href='#about-project'>
+            Узнать больше
+          </a>
+        </button>
       </div>
 
       <img

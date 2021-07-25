@@ -1,15 +1,11 @@
 .navtab__button {
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 16px;
-    color: #FFFFFF;
     border: 1px solid #FFFFFF;
     border-radius: 3px;
     background-color: transparent;
     margin: 0px;
     width: 129px;
     height: 36px;
+    transition: opacity 0.2s ease;
 }
 
 .navtab__button:hover{
