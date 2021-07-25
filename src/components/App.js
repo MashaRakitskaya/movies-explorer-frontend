@@ -7,13 +7,16 @@ import Main from "./Main/Main";
 import Footer from "./Footer";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn] = useState(false);
 
   return (
     <div className='page'>
       <div className='page__container'>
         {/* <CurrentUserContext.Provider> */}
-        <Header loggedIn={loggedIn} />
+        <Route exact path={["/"]}>
+          <Header loggedIn={loggedIn} />
+        </Route>
+
         <Switch>
           <Route exact path='/'>
             <Main />
@@ -21,12 +24,13 @@ function App() {
           <Route path='/signup'>
             <Register />
           </Route>
-
           <Route path='/signin'>
             <Login />
           </Route>
         </Switch>
-        <Footer />
+        <Route exact path={["/"]}>
+          <Footer />
+        </Route>
 
         {/* </CurrentUserContext.Provider> */}
       </div>

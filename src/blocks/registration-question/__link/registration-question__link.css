@@ -1,0 +1,10 @@
+.registration-question__link {
+    color: #4285F4;
+    text-decoration: none;
+    margin-left: 6px;
+    transition: opacity 0.2s ease;
+}
+
+.registration-question__link:hover {
+    opacity: 0.6;
+}
