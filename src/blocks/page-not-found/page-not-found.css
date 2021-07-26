@@ -1,9 +1,22 @@
 .page-not-found {
-    background: #202020;
-    height: 100vh;
+    padding-top: 246px;
+    padding-bottom: 60px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    position: relative;
+    background: #202020;
+}
+
+@media (max-width: 780px) {
+    .page-not-found {
+        padding-top: 408px;
+        padding-bottom: 222px;
+    }
+}
+  
+@media (max-width: 400px) {
+    .page-not-found {
+        padding-top: 329px;
+        padding-bottom: 30px;
+    }
 }
