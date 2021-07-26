@@ -84,3 +84,20 @@
 @import url(./blocks/page-not-found/__button/page-not-found__button.css);
 @import url(./blocks/page-not-found/__text/page-not-found__text.css);
 @import url(./blocks/page-not-found/__title/page-not-found__title.css);
+
+@import url(./blocks/header-navigation/header-navigation.css);
+@import url(./blocks/header-navigation/__button-anchor/header-navigation__button-anchor.css);
+@import url(./blocks/header-navigation/__button-img/header-navigation__button-img.css);
+@import url(./blocks/header-navigation/__button/header-navigation__button.css);
+@import url(./blocks/header-navigation/__container/header-navigation__container.css);
+@import url(./blocks/header-navigation/__movies/header-navigation__movies.css);
+
+@import url(./blocks/profile/profile.css);
+@import url(./blocks/profile/__container/profile__container.css);
+@import url(./blocks/profile/__edit/profile__edit.css);
+@import url(./blocks/profile/__form/profile__form.css);
+@import url(./blocks/profile/__input-error/profile__input-error.css);
+@import url(./blocks/profile/__input-label/profile__input-label.css);
+@import url(./blocks/profile/__input/profile__input.css);
+@import url(./blocks/profile/__signout/profile__signout.css);
+@import url(./blocks/profile/__title/profile__title.css);

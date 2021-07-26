@@ -6,7 +6,10 @@ import Navigation from "./Navigation";
 function Header({ loggedIn }) {
   return (
     <header className='header'>
-      <img className='header__logo' src={logo} alt='Логотип' />
+      <NavLink to='/'>
+        <img className='header__logo' src={logo} alt='Логотип' />
+      </NavLink>
+
       {loggedIn ? (
         <Navigation />
       ) : (

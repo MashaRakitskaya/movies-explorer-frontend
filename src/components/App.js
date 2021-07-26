@@ -5,7 +5,10 @@ import Register from "./Register";
 import Login from "./Login";
 import Main from "./Main/Main";
 import Footer from "./Footer";
+import Movies from "./Movies/Movies";
 import PageNotFound from "./PageNotFound";
+import SavedMovies from "./SavedMovies/SavedMovies";
+import Profile from "./Profile";
 
 function App() {
   const [loggedIn] = useState(false);
@@ -13,7 +16,6 @@ function App() {
   return (
     <div className='page'>
       <div className='page__container'>
-        {/* <CurrentUserContext.Provider> */}
         <Route exact path={["/"]}>
           <Header loggedIn={loggedIn} />
         </Route>
@@ -28,6 +30,15 @@ function App() {
           <Route path='/signin'>
             <Login />
           </Route>
+          <Route exact path='/movies'>
+            <Movies />
+          </Route>
+          <Route exact path='/saved-movies'>
+            <SavedMovies />
+          </Route>
+          <Route exact path='/profile'>
+            <Profile />
+          </Route>
 
           <Route path='/404'>
             <PageNotFound />
@@ -36,8 +47,6 @@ function App() {
         <Route exact path={["/"]}>
           <Footer />
         </Route>
-
-        {/* </CurrentUserContext.Provider> */}
       </div>
     </div>
   );
