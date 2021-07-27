@@ -44,7 +44,7 @@ function App() {
             <PageNotFound />
           </Route>
         </Switch>
-        <Route exact path={["/"]}>
+        <Route exact path={["/", "/movies"]}>
           <Footer />
         </Route>
       </div>

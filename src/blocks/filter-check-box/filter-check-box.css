@@ -1,0 +1,8 @@
+.filter-check-box {
+   height: 40px;
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   width: 226px;
+   margin-left: 29px;
+}

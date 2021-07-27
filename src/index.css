@@ -102,3 +102,19 @@
 @import url(./blocks/profile/__input/profile__input.css);
 @import url(./blocks/profile/__signout/profile__signout.css);
 @import url(./blocks/profile/__title/profile__title.css);
+
+@import url(./blocks/movies/movies.css);
+
+@import url(./blocks/search-form/search-form.css);
+@import url(./blocks/search-form/__button/search-form__button.css);
+@import url(./blocks/search-form/__container/search-form__container.css);
+@import url(./blocks/search-form/__input/search-form__input.css);
+@import url(./blocks/search-form/__form/search-form__form.css);
+@import url(./blocks/search-form/__rearch-img/search-form__rearch-img.css);
+
+@import url(./blocks/filter-check-box/filter-check-box.css);
+@import url(./blocks/filter-check-box/__checkbox/filter-check-box__checkbox.css);
+@import url(./blocks/filter-check-box/__checkbox-text/filter-check-box__checkbox-text.css);
+@import url(./blocks/filter-check-box/__switch/filter-check-box__switch.css);
+
+@import url(./blocks/movies-card-list/movies-card-list.css);
