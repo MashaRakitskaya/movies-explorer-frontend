@@ -96,6 +96,7 @@
 @import url(./blocks/profile/__container/profile__container.css);
 @import url(./blocks/profile/__edit/profile__edit.css);
 @import url(./blocks/profile/__form/profile__form.css);
+@import url(./blocks/profile/__label-input-box/profile__label-input-box.css);
 @import url(./blocks/profile/__input-error/profile__input-error.css);
 @import url(./blocks/profile/__input-label/profile__input-label.css);
 @import url(./blocks/profile/__input/profile__input.css);

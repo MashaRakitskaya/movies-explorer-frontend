@@ -28,8 +28,11 @@ function Profile(onEdit) {
         <div className='profile__container'>
           <h2 className='profile__title'>Привет, Виталий!</h2>
           <form className='profile__form' onSubmit={handleSubmit}>
-            <label className='profile__input-label' htmlFor='name-input'>
-              Имя
+            <div className='profile__label-input-box'>
+              <label className='profile__input-label' htmlFor='name-input'>
+                Имя
+              </label>
+
               <input
                 className='profile__input'
                 id='name-input'
@@ -38,13 +41,15 @@ function Profile(onEdit) {
                 value={data.name}
                 onChange={handleChange}
               />
-              <span
-                id='name-input-error'
-                className='profile__input-error'
-              ></span>
-            </label>
-            <label className='profile__input-label' htmlFor='email-input'>
-              E-mail
+            </div>
+
+            <span id='name-input-error' className='profile__input-error'></span>
+
+            <div className='profile__label-input-box'>
+              <label className='profile__input-label' htmlFor='email-input'>
+                E-mail
+              </label>
+
               <input
                 className='profile__input'
                 id='email-input'
@@ -53,11 +58,12 @@ function Profile(onEdit) {
                 value={data.email}
                 onChange={handleChange}
               />
-              <span
-                id='email-input-error'
-                className='profile__input-error'
-              ></span>
-            </label>
+            </div>
+
+            <span
+              id='email-input-error'
+              className='profile__input-error'
+            ></span>
             <button
               type='submit'
               className='profile__edit'

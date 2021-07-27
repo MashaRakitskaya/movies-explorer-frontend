@@ -1,3 +1,32 @@
 .profile__edit {
     width: 100%;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #FFFFFF;
+    background: transparent;
+    height: 16px;
+    border: none;
+    transition: opacity 0.2s ease;
+    margin-top: 220px;
+}
+
+.profile__edit:hover{
+    opacity: 0.6;
+}
+
+@media (max-width: 780px) {
+    .profile__edit {
+        margin-top: 210px;
+    }
+}
+  
+@media (max-width: 470px) {
+    .profile__edit {
+        margin-top: 379px;
+    }
 }

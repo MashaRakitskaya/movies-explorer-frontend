@@ -1,0 +1,8 @@
+.profile__label-input-box {
+    display: flex;
+    border-bottom: 1px solid #424242;
+}
+
+.profile__label-input-box:last-of-type{
+    border-bottom:none;
+}
