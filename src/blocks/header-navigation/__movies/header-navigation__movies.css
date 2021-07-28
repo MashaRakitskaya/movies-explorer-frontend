@@ -16,3 +16,9 @@
 .header-navigation__movies:last-of-type {
     margin-right: 0px;
 }
+
+@media (max-width: 780px) {
+    .header-navigation__movies {
+        display: none;
+    }
+}

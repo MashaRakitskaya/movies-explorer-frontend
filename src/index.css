@@ -135,3 +135,11 @@
 @import url(./blocks/loading-container/loading-container.css);
 @import url(./blocks/spinner/spinner.css);
 @import url(./blocks/rotation/rotation.css);
+
+@import url(./blocks/header-navigation/__button-burger/header-navigation__button-burger.css);
+
+@import url(./blocks/burger-menu/burger-menu.css);
+@import url(./blocks/burger-menu/__button-close/burger-menu__button-close.css);
+@import url(./blocks/burger-menu/__link-box/burger-menu__link-box.css);
+@import url(./blocks/burger-menu/__link/burger-menu__link.css);
+@import url(./blocks/burger-menu/_open/burger-menu_open.css);

@@ -1,9 +1,18 @@
 import logo from "../images/logo.svg";
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import iconpersone from "../images/iconpersone.svg";
+import BurgerMenu from "./BurgerMenu";
+import burgermedu from "../images/burger.svg";
 
 function Navigation() {
+  const [openMenu, setOpenMenu] = useState(true);
+  function handleOpen() {
+    setOpenMenu(false);
+  }
+  function handleClose() {
+    setOpenMenu(true);
+  }
   return (
     <header className='header'>
       <NavLink to='/'>
@@ -28,6 +37,14 @@ function Navigation() {
             Аккаунт
           </NavLink>
         </button>
+
+        <img
+          onClick={handleOpen}
+          className='header-navigation__button-burger'
+          src={burgermedu}
+          alt='Иконка бургерного меню'
+        />
+        <BurgerMenu open={openMenu} close={handleClose} />
       </nav>
     </header>
   );
