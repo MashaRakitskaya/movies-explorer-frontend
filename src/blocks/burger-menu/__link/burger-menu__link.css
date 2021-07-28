@@ -5,4 +5,16 @@
     line-height: 22px;
     text-align: center;
     color: #FFFFFF;
+    list-style: none;
+    text-decoration: none;
+    margin-bottom: 26px;
+    transition: opacity 0.2s ease;
+}
+
+.burger-menu__link:last-of-type {
+    margin-bottom: 0px;
+}
+
+.burger-menu__link:hover {
+    text-decoration: underline;
 }

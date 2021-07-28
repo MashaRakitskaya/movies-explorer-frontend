@@ -1,3 +1,22 @@
 .burger-menu_open {
-    transform: translateX(0);
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: 520px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    background: #202020;
+    padding-top: 159px;
+    padding-bottom: 90px;
+}
+
+@media (max-width: 540px) {
+    .burger-menu_open {
+        width: 320px;
+    }
 }
