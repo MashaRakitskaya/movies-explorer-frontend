@@ -131,3 +131,7 @@
 @import url(./blocks/movies-card/__title/movies-card__title.css);
 
 @import url(./blocks/line/line.css);
+
+@import url(./blocks/loading-container/loading-container.css);
+@import url(./blocks/spinner/spinner.css);
+@import url(./blocks/rotation/rotation.css);
