@@ -1,3 +1,21 @@
 .movies {
     background: #202020;
+    padding-left: 70px;
+    padding-right: 70px;
+    padding-bottom: 80px;
+}
+
+@media (max-width: 780px) {
+    .movies {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+  
+@media (max-width: 400px) {
+    .movies {
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 80px;
+    }
 }

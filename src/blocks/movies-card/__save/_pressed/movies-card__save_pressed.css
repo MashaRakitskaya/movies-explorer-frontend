@@ -1,0 +1,16 @@
+.movies-card__save_pressed  {
+    background: url(../../../../images/flagwhite.png) no-repeat 50%;
+    border: none;
+    min-width: 30px;
+    height: 30px;
+    align-self: center;
+    justify-self: end;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    outline: none;
+    background-color: #3DDC84;
+    border-radius: 48px;
+}
+.movies-card__save_pressed:hover {
+    opacity: 0.6;
+}

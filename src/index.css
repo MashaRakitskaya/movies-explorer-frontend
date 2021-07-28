@@ -118,3 +118,16 @@
 @import url(./blocks/filter-check-box/__switch/filter-check-box__switch.css);
 
 @import url(./blocks/movies-card-list/movies-card-list.css);
+@import url(./blocks/movies-card-list/__box-button/movies-card-list__box-button.css);
+@import url(./blocks/movies-card-list/__button-more/movies-card-list__button-more.css);
+
+@import url(./blocks/movies-card/movies-card.css);
+@import url(./blocks/movies-card/__image/movies-card__image.css);
+@import url(./blocks/movies-card/__discription/movies-card__discription.css);
+@import url(./blocks/movies-card/__save/movies-card__save.css);
+@import url(./blocks/movies-card/__save/_pressed/movies-card__save_pressed.css);
+@import url(./blocks/movies-card/__delete/movies-card__delete.css);
+@import url(./blocks/movies-card/__time/movies-card__time.css);
+@import url(./blocks/movies-card/__title/movies-card__title.css);
+
+@import url(./blocks/line/line.css);

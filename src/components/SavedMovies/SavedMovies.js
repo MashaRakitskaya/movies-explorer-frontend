@@ -1,11 +1,16 @@
 import React from "react";
 import Navigation from "../Navigation";
+import MoviesCardList from "./MoviesCardList";
+import SearchForm from "../Movies/SearchForm";
 
 function SavedMovies() {
   return (
     <>
       <Navigation />
-      <section className='movies'></section>
+      <SearchForm />
+      <section className='movies'>
+        <MoviesCardList />
+      </section>
     </>
   );
 }

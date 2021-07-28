@@ -7,8 +7,8 @@ function Movies() {
   return (
     <>
       <Navigation />
+      <SearchForm />
       <section className='movies'>
-        <SearchForm />
         <MoviesCardList />
       </section>
     </>
