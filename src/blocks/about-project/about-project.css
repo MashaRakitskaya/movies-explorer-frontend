@@ -1,5 +1,4 @@
 .about-project {
-    /* min-height: 641px; */
     height: 393px;
     background: #202020;
     padding-left: 70px;
@@ -10,7 +9,6 @@
 
 @media (max-width: 780px) {
     .about-project {
-        /* height: 400px; */
         height: 410px;
         padding-left: 50px;
         padding-right: 50px;
