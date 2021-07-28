@@ -6,3 +6,10 @@
    width: 226px;
    margin-left: 29px;
 }
+
+@media (max-width: 700px) {
+   .filter-check-box {
+       position: absolute;
+       top: 138px;
+   }
+}

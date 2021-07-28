@@ -7,3 +7,9 @@
     max-width: 913px;
     border-right: 1px solid #505050;
 }
+
+@media (max-width: 700px) {
+    .search-form__form {
+        border-right: none;
+    }
+}

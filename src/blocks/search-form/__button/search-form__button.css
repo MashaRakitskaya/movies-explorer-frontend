@@ -1,7 +1,7 @@
 .search-form__button {
     background: url(../../../images/buttonsearch.png) no-repeat 50%;
     border: none;
-    width: 34px;
+    min-width: 34px;
     height: 34px;
     align-self: center;
     justify-self: end;
