@@ -1,6 +1,6 @@
 import React from "react";
 import MoviesCard from "./MoviesCard";
-// import spinner from "../../images/spiner.svg";
+// import Preloader from "./Preloader";
 
 function MoviesCardList() {
   return (
@@ -9,9 +9,7 @@ function MoviesCardList() {
       <section className='movies-card-list'>
         <MoviesCard />
       </section>
-      {/* <div className='loading-container'>
-        <img className='spinner rotation' src={spinner} alt='Спинер' />
-      </div> */}
+      {/* <Preloader /> */}
       <div className='movies-card-list__box-button'>
         <button className='movies-card-list__button-more'>Еще</button>
       </div>
