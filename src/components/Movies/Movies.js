@@ -3,11 +3,11 @@ import Navigation from "../Navigation";
 import MoviesCardList from "./MoviesCardList";
 import SearchForm from "./SearchForm";
 
-function Movies() {
+function Movies({ onSearch }) {
   return (
     <>
       <Navigation />
-      <SearchForm />
+      <SearchForm onSearch={onSearch} />
 
       <section className='movies'>
         <MoviesCardList />

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Form from "./Form";
 import { NavLink } from "react-router-dom";
 
-function Register({ onRegister }) {
+function Register({ error, onRegister }) {
   const initialData = {
     name: "",
     email: "",
@@ -75,6 +75,11 @@ function Register({ onRegister }) {
         >
           Зарегистрироваться
         </button>
+        {error && (
+          <span id='submit-error' className='child-form__input-error'>
+            Ошибка регистрации
+          </span>
+        )}
         <p className='registration-question'>
           Уже зарегистрированы?
           <NavLink to='/signin' className='registration-question__link'>
