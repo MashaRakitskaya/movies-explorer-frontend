@@ -1,0 +1,8 @@
+.profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #202020;
+    height: 100vh;
+    justify-content: center;
+}

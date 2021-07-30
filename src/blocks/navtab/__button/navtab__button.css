@@ -1,0 +1,13 @@
+.navtab__button {
+    border: 1px solid #FFFFFF;
+    border-radius: 3px;
+    background-color: transparent;
+    margin: 0px;
+    width: 129px;
+    height: 36px;
+    transition: opacity 0.2s ease;
+}
+
+.navtab__button:hover{
+    opacity: 0.6;
+}

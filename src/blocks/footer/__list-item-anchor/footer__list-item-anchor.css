@@ -1,0 +1,19 @@
+.footer__list-item-anchor {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    color: #FFFFFF;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+.footer__list-item-anchor:hover {
+    opacity: 0.6;
+}
+
+@media (max-width: 400px) {
+    .footer__list-item-anchor {
+        font-size: 12px;
+        line-height: 15px;
+    }
+}

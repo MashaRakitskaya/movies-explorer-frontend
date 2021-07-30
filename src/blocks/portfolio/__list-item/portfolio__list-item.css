@@ -1,0 +1,9 @@
+.portfolio__list-item {
+    list-style-type: none;
+    border-bottom: 1px solid #E6E6E6;
+    margin-bottom: 20px;
+}
+
+.portfolio__list-item:last-of-type {
+    margin-bottom: 0px;
+}

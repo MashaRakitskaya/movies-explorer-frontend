@@ -1,0 +1,14 @@
+.parent-form {
+    width: 396px;
+    height: 560px;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 470px) {
+    .parent-form {
+        width: 260px;
+        align-items: center;
+        height: 694px;
+    }
+}

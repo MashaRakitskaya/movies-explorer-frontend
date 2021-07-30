@@ -1,0 +1,19 @@
+.child-form__save {
+    width: 100%;
+    background: #4285F4;
+    border-radius: 3px;
+    height: 45px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #FFFFFF;
+    border: none;
+    margin: auto 0px 0px;
+    transition: opacity 0.2s ease;
+}
+
+.child-form__save:hover {
+    opacity: 0.6;
+}

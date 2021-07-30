@@ -1,0 +1,26 @@
+.navtab {
+    min-height: 546px;
+    background: #073042;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 70px;
+    padding-right: 70px;
+    padding-top: 75px;
+    padding-bottom: 75px;
+}
+
+@media (max-width: 780px) {
+    .navtab {
+        padding-top: 140px;
+        flex-direction: column-reverse;
+        align-items: center;
+        padding-bottom: 76px;
+    }
+}
+  
+@media (max-width: 400px) {
+    .navtab {
+        padding-top: 70px;
+        padding-bottom: 30px;
+    }
+}

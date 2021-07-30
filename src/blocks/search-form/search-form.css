@@ -1,0 +1,23 @@
+.search-form {
+    padding-left: 70px;
+    padding-right: 70px;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    background: #202020;
+}
+
+@media (max-width: 780px) {
+    .search-form {
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 80px;
+        padding-bottom: 109px;
+    }
+}
+  
+@media (max-width: 400px) {
+    .search-form {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}

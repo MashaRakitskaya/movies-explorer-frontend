@@ -1,0 +1,11 @@
+.portfolio__list-item-anchor {
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: opacity 0.2s ease;
+}
+
+.portfolio__list-item-anchor:hover {
+    opacity: 0.6;
+}

@@ -1,0 +1,9 @@
+.burger-menu {
+    display: none;
+}
+
+@media (max-width: 780px) {
+    .burger-menu {
+        display: hidden;
+    }
+}

@@ -1,0 +1,11 @@
+.navtab__img {
+    width: 310px;
+    height: 304px;
+}
+
+@media screen and (max-width: 767px) {
+    .navtab__img {
+        width: 210px;
+        height: 206px;
+    }
+}

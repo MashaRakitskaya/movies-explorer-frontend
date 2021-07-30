@@ -1,0 +1,17 @@
+.profile__container {
+    height: 482px;
+    width: 410px;
+}
+
+@media (max-width: 780px) {
+    .profile__container {
+        height: 445px;
+    }
+}
+  
+@media (max-width: 470px) {
+    .profile__container {
+        height: 596px;
+        width: 260px;
+    }
+}

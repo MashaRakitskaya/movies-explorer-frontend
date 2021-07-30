@@ -1,0 +1,16 @@
+.techs__list-box {
+    padding-top: 100px;
+}
+
+@media (max-width: 780px) {
+    .techs__list-box {
+        padding-top: 83px;
+    }
+}
+  
+@media (max-width: 400px) {
+    .techs__list-box {
+        padding-top: 50px;        
+    }
+}
+

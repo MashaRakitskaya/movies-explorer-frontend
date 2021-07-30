@@ -1,0 +1,14 @@
+.techs__list {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 0px;
+    padding: 0px;
+}
+
+@media (max-width: 788px) {
+    .techs__list {
+        width: 178px;
+    }
+}

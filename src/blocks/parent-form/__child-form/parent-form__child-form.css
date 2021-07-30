@@ -1,0 +1,14 @@
+.parent-form__child-form {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 413px;
+}
+
+@media (max-width: 470px) {
+    .parent-form__child-form {
+        margin-top: 80px;
+        height: 497px;
+    }
+}

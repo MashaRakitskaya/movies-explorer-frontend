@@ -1,0 +1,17 @@
+.about-project__title {
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.04em;
+    color: #FFFFFF;
+    margin: 0px;
+    margin-bottom: 26px;
+}
+  
+@media (max-width: 400px) {
+    .about-project__title  {
+        font-size: 18px;
+        line-height: 22px;
+        margin-bottom: 16px;
+    }
+}

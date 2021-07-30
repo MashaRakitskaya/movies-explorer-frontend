@@ -1,0 +1,24 @@
+.header-navigation__movies {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 18px;
+    color: #FFFFFF;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+    margin-right: 16px;
+}
+
+.header-navigation__movies:hover {
+    opacity: 0.6;
+}
+
+.header-navigation__movies:last-of-type {
+    margin-right: 0px;
+}
+
+@media (max-width: 780px) {
+    .header-navigation__movies {
+        display: none;
+    }
+}

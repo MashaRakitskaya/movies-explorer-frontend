@@ -1,0 +1,27 @@
+.about-project__container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 550px;
+    margin-right: 40px;
+}
+
+@media (max-width: 780px) {
+    .about-project__container {
+        margin-right: 30px;
+    }
+}
+
+@media (max-width: 400px) {
+    .about-project__container {
+        margin-bottom: 56px;
+        margin-right: 0px;
+    }
+    .about-project__container:last-of-type {
+        margin-bottom: 0px;
+    }
+}
+
+.about-project__container:last-of-type {
+    margin-right: 0px;
+}

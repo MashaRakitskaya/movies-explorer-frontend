@@ -1,0 +1,14 @@
+.header-navigation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-left: 44px;
+}
+
+@media (max-width: 780px) {
+    .header-navigation{
+        justify-content: flex-end;
+    }
+}

@@ -1,0 +1,8 @@
+.movies-card__image {
+    width: 100%;
+    object-fit: cover;
+    height: 203px;
+    cursor: pointer;
+    max-height: 100%;
+    display: block;
+}

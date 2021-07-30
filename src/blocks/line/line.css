@@ -1,0 +1,12 @@
+.line {
+    width: 100%;
+    border-top: 1px solid #424242;
+    margin-bottom: 70px;
+}
+
+@media (max-width: 400px) {
+    .line {
+        margin-bottom: 40px;
+    }
+}
+

@@ -1,0 +1,26 @@
+.portfolio {
+    min-height: 224px;
+    background: #202020;
+    padding-left: 70px;
+    padding-right: 70px;
+    padding-top: 100px;
+    padding-bottom: 125px;
+}
+
+@media (max-width: 780px) {
+    .portfolio{
+        padding-top: 90px;
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-bottom: 90px;
+    }
+}
+  
+@media (max-width: 400px) {
+    .portfolio {
+        padding-top: 69px;
+        padding-bottom: 70px;
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+}

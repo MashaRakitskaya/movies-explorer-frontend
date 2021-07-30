@@ -1,0 +1,17 @@
+.time-line {
+    margin-top: 110px;
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width: 780px) {
+    .time-line {
+        margin-top: 93px;
+    }
+}
+  
+@media (max-width: 400px) {
+    .time-line {
+        margin-top: 60px;
+    }
+}

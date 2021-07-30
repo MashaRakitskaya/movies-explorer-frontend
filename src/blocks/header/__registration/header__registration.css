@@ -1,0 +1,23 @@
+.header__registration {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    color: #FFFFFF;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 0px;
+    padding: 0px;
+    cursor: pointer;
+    margin-right: 30px;
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+.header__registration:hover {
+    opacity: 0.6;
+}
+
+@media (max-width: 400px) {
+    .header__registration {
+        font-size: 10px;
+    }
+}

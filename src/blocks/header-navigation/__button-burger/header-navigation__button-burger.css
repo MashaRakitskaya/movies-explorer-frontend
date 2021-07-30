@@ -1,0 +1,15 @@
+.header-navigation__button-burger {
+    display: none;
+}
+
+@media (max-width: 780px) {
+    .header-navigation__button-burger {
+        display: inline;
+        transition: opacity 0.2s ease;
+        cursor: pointer;
+    }
+}
+
+.header-navigation__button-burger:hover {
+    opacity: 0.6;
+}

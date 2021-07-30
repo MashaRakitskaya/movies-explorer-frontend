@@ -1,0 +1,19 @@
+.burger-menu__button-close {
+    background: url(../../../images/closeburger.svg) no-repeat 50%;
+    border: none;
+    min-width: 22px;
+    height: 22px;
+    align-self: center;
+    justify-self: end;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    outline: none;
+    background-color: transparent;
+    position: absolute;
+    right: 23px;
+    top: 23px;
+}
+
+.burger-menu__button-close:hover {
+    opacity: 0.6;
+}

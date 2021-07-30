@@ -1,0 +1,15 @@
+.time-line__backend-part {
+    width: 228px;
+}
+
+@media (max-width: 780px) {
+    .time-line__backend-part {
+        width: 140px;
+    }
+}
+  
+@media (max-width: 400px) {
+    .time-line__backend-part {
+        width: 100px;
+    }
+}

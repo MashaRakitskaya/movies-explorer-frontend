@@ -1,0 +1,18 @@
+.registration-question {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #8B8B8B;
+    margin: 0px;
+    margin-top: 16px;
+}
+
+@media (max-width: 470px) {
+    .registration-question {
+        margin-top: 14px;
+        font-size: 12px;
+        line-height: 15px;
+    }
+}

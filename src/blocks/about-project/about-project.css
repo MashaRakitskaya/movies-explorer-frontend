@@ -1,0 +1,28 @@
+.about-project {
+    height: 393px;
+    background: #202020;
+    padding-left: 70px;
+    padding-right: 70px;
+    padding-top: 110px;
+    padding-bottom: 105px;
+}
+
+@media (max-width: 780px) {
+    .about-project {
+        height: 410px;
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-top: 90px;
+        padding-bottom: 85px;
+    }
+}
+  
+@media (max-width: 400px) {
+    .about-project {
+        height: 513px;
+        padding-left: 18px;
+        padding-right: 18px;
+        padding-top: 70px;
+        padding-bottom: 58px;
+    }
+}

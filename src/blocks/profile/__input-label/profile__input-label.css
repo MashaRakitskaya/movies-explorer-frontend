@@ -1,0 +1,17 @@
+.profile__input-label {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 13px;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 141px;
+}
+
+@media (max-width: 470px) {
+    .profile__input-label {
+        width: 130px;
+    }
+}

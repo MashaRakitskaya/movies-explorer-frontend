@@ -1,0 +1,24 @@
+.page-not-found__button {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #4285F4;
+    background-color: transparent;
+    border: none;
+    margin: 0px;
+    padding: 0px;
+    transition: opacity 0.2s ease;
+    margin-top: 184px;
+}
+
+.page-not-found__button:hover {
+    opacity: 0.6;
+}
+  
+@media (max-width: 400px) {
+    .page-not-found__button {
+        margin-top: 284px;
+    }
+}

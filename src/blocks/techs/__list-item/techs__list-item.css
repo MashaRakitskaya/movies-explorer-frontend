@@ -1,0 +1,17 @@
+.techs__list-item {
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    letter-spacing: -0.04em;
+    color: #FFFFFF;
+    margin: 0px;
+    list-style-type: none;
+    height: 57px;
+    width: 84px;
+    background: #303030;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

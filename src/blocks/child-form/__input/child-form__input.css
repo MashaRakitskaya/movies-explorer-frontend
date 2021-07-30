@@ -1,0 +1,20 @@
+.child-form__input {
+    margin: 0px;
+    padding: 0px;
+    height: 46px;
+    background: #2F2F2F;
+    border-radius: 8px;
+    margin-top: 10px;
+    border: none;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    color: #FFFFFF;
+    outline:none;
+    padding-left: 15px;
+}
+
+.child-form__input:last-of-type {
+    margin-bottom: 0px;
+}

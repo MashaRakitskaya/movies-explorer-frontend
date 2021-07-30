@@ -1,0 +1,19 @@
+.footer__title {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+    color: #8B8B8B;
+    margin: 0px;
+    border-bottom: 1px solid #424242;
+    padding-bottom: 20px;
+}
+
+@media (max-width: 400px) {
+    .footer__title {
+        padding-bottom: 21px;
+        font-size: 12px;
+        line-height: 15px;
+    }
+}
