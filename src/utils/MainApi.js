@@ -8,16 +8,13 @@ const checkAnswerCorrectness = (response) => {
   return Promise.reject(new Error(`Ошибка ${response.status}`));
 };
 
-const headers = {
-  Accept: "application/json",
-  "Content-Type": "application/json",
-};
-
 export const register = (name, email, password) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
-    headers: headers,
-    credentials: "include",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({ name, email, password }),
   }).then((response) => checkAnswerCorrectness(response));
 };
@@ -25,8 +22,10 @@ export const register = (name, email, password) => {
 export const authorize = (email, password) => {
   return fetch(`${BASE_URL}/signin`, {
     method: "POST",
-    headers: headers,
-    credentials: "include",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({ email, password }),
   }).then((response) => checkAnswerCorrectness(response));
 };
@@ -39,10 +38,7 @@ export const checkToken = (token) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    credentials: "include",
-  })
-    .then((response) => checkAnswerCorrectness(response))
-    .then((data) => data);
+  }).then((response) => checkAnswerCorrectness(response));
 };
 
 export const getSaveMovies = () =>

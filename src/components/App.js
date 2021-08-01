@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route, Switch, useHistory } from "react-router-dom";
+import { Route, Switch, useHistory, useLocation } from "react-router-dom";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import ProtectedRoute from "./ProtectedRoute.js";
 import Header from "./Header";
@@ -19,14 +19,18 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [error, setError] = useState(false);
   const [movies, setMovies] = useState([]);
+  const [foundMovies, setFoundMovies] = useState([]);
   const history = useHistory();
+  const location = useLocation();
 
   function handleLogin(email, password) {
     MainApi.authorize(email, password)
       .then((result) => {
-        localStorage.setItem("token", result.token);
-        setLoggedIn(true);
-        history.push("/movies");
+        if (result.token) {
+          setLoggedIn(true);
+          localStorage.setItem("token", result.token);
+          history.push("/movies");
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -36,14 +40,13 @@ function App() {
   function handleRegister(name, email, password) {
     MainApi.register(name, email, password)
       .then((result) => {
-        if (result) {
-          console.log("df");
-          handleLogin(email, password);
-        }
+        handleLogin(email, password);
       })
       .catch((err) => {
-        setError(true);
-        console.log(err);
+        if (err) {
+          setError(true);
+          console.log(err);
+        }
       });
   }
 
@@ -67,16 +70,31 @@ function App() {
       });
   }
 
-  function handleSearchMovies() {
-    movies;
+  function handleSearchMovies(data) {
+    console.log(data);
+    const filteredArray = movies
+      .filter((obj) => {
+        return (
+          obj.description?.toLowerCase() == data.toLowerCase() ||
+          obj.director?.toLowerCase() == data.toLowerCase() ||
+          obj.nameEN?.toLowerCase() == data.toLowerCase() ||
+          obj.nameRU?.toLowerCase() == data.toLowerCase()
+        );
+      })
+      .map((obj) => {
+        return obj;
+      });
+    setFoundMovies(filteredArray);
+    localStorage.setItem("foundMovies", JSON.stringify(filteredArray));
   }
-
+  console.log(JSON.parse(localStorage.getItem("foundMovies")));
   useEffect(() => {
     if (loggedIn) {
       getUserInformation();
       getAllMovies();
     }
-  }, [loggedIn]);
+    history.push(location.pathname);
+  }, [loggedIn, history]);
 
   function handleTokenCheck() {
     const token = localStorage.getItem("token");
@@ -85,11 +103,11 @@ function App() {
         .then((result) => {
           if (result) {
             setLoggedIn(true);
-            history.push("/movies");
+            history.push(location.pathname);
           }
         })
         .catch((err) => {
-          history.push("/signin");
+          history.push("/");
           console.log(`${err}`);
         });
     }
@@ -97,48 +115,72 @@ function App() {
 
   useEffect(() => {
     handleTokenCheck();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (location.pathname === "/movies") {
+      const foundMovies = JSON.parse(localStorage.getItem("foundMovies"));
+      setFoundMovies(foundMovies);
+    }
+  }, [location.pathname]);
+
+  function handleSignOut() {
+    localStorage.removeItem("token");
+    setLoggedIn(false);
+    history.push("/signin");
+  }
 
   return (
     <div className='page'>
       <div className='page__container'>
-        <CurrentUserContext.Provider
-          value={currentUser}
-        ></CurrentUserContext.Provider>
-        <Route exact path={["/"]}>
-          <Header loggedIn={loggedIn} />
-        </Route>
-
-        <Switch>
-          <Route exact path='/'>
-            <Main />
-          </Route>
-          <Route path='/signup'>
-            <Register error={error} onRegister={handleRegister} />
-          </Route>
-          <Route path='/signin'>
-            <Login onLogin={handleLogin} />
+        <CurrentUserContext.Provider value={currentUser}>
+          <Route exact path={["/"]}>
+            <Header loggedIn={loggedIn} />
           </Route>
 
-          <ProtectedRoute
-            exact
-            path='/movies'
-            onSearch={handleSearchMovies}
-            component={Movies}
-          />
+          <Switch>
+            <Route exact path='/'>
+              <Main />
+            </Route>
+            <Route path='/signup'>
+              <Register error={error} onRegister={handleRegister} />
+            </Route>
+            <Route path='/signin'>
+              <Login onLogin={handleLogin} />
+            </Route>
 
-          <ProtectedRoute exact path='/saved-movies' component={SavedMovies} />
+            <ProtectedRoute
+              exact
+              path='/movies'
+              onSearch={handleSearchMovies}
+              component={Movies}
+              loggedIn={loggedIn}
+              foundMovies={foundMovies}
+            />
 
-          <ProtectedRoute exact path='/profile' component={Profile} />
+            <ProtectedRoute
+              exact
+              path='/saved-movies'
+              component={SavedMovies}
+              loggedIn={loggedIn}
+            />
 
-          <Route path='/404'>
-            <PageNotFound />
+            <ProtectedRoute
+              loggedIn={loggedIn}
+              exact
+              path='/profile'
+              component={Profile}
+              signOut={handleSignOut}
+            />
+
+            <Route path='/404'>
+              <PageNotFound />
+            </Route>
+          </Switch>
+          <Route exact path={["/", "/movies", "/saved-movies"]}>
+            <Footer />
           </Route>
-        </Switch>
-        <Route exact path={["/", "/movies", "/saved-movies"]}>
-          <Footer />
-        </Route>
+        </CurrentUserContext.Provider>
       </div>
     </div>
   );

@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
 import Navigation from "./Navigation";
 
-function Profile(onEdit) {
+function Profile({ onEdit, signOut }) {
   const initialData = {
     name: "",
     email: "",
@@ -73,9 +72,9 @@ function Profile(onEdit) {
             </button>
           </form>
 
-          <NavLink to='/' className='profile__signout'>
+          <a onClick={signOut} className='profile__signout'>
             Выйти из аккаунта
-          </NavLink>
+          </a>
         </div>
       </section>
     </>
