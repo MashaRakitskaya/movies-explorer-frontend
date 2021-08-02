@@ -24,6 +24,7 @@ function App() {
   const location = useLocation();
   const [presenceFilms, setPresenceFilms] = useState(false);
   const [preloader, setPreloader] = useState(false);
+  const [savedMovies, setSavedMovies] = useState([]);
 
   function handleLogin(email, password) {
     MainApi.authorize(email, password)
@@ -72,6 +73,16 @@ function App() {
       });
   }
 
+  const getSaveMovies = () => {
+    MainApi.getSaveMovies()
+      .then((result) => {
+        setSavedMovies(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   function handleSearchMovies(data) {
     setPreloader(true);
     const filteredArray = movies
@@ -103,8 +114,40 @@ function App() {
     if (loggedIn) {
       getUserInformation();
       getAllMovies();
+      getSaveMovies();
     }
   }, [loggedIn, history]);
+
+  const saveMovie = (movie) => {
+    MainApi.saveMovie(movie)
+      .then((res) => {
+        setSavedMovies([...savedMovies, { ...res, id: res.movieId }]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const deleteSaveMovie = (movie) => {
+    const movieId = savedMovies.find((item) => item.id === movie.id)._id;
+
+    MainApi.deleteSaveMovie(movieId)
+      .then((res) => {
+        if (res.message === "Фильм удалён") {
+          const newArray = savedMovies.filter((item) => item._id !== movieId);
+          setSavedMovies([...newArray]);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const deleteSaveHandler = (movie, added) =>
+    added ? saveMovie(movie) : deleteSaveMovie(movie);
+
+  const movieAdded = (movie) =>
+    savedMovies.some((item) => item.movieId === movie.id);
 
   function handleTokenCheck() {
     const token = localStorage.getItem("token");
@@ -169,6 +212,8 @@ function App() {
               foundMovies={foundMovies}
               presenceFilms={presenceFilms}
               preloader={preloader}
+              deleteSaveHandler={deleteSaveHandler}
+              movieAdded={movieAdded}
             />
 
             <ProtectedRoute
@@ -176,6 +221,9 @@ function App() {
               path='/saved-movies'
               component={SavedMovies}
               loggedIn={loggedIn}
+              deleteSaveHandler={deleteSaveHandler}
+              movieAdded={movieAdded}
+              savedMovies={savedMovies}
             />
 
             <ProtectedRoute

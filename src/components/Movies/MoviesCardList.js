@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import MoviesCard from "./MoviesCard";
 import Preloader from "./Preloader";
 
-function MoviesCardList({ foundMovies, preloader }) {
+function MoviesCardList({ foundMovies, preloader, deleteSaveHandler }) {
   const BIG_WIDTH = 1280;
   const MEDIUM_WIDTH = 780;
   const SMALL_WIDTH = 500;
@@ -58,7 +58,13 @@ function MoviesCardList({ foundMovies, preloader }) {
       {preloader && <Preloader />}
       <section className='movies-card-list'>
         {showFoundMovies.map((item) => {
-          return <MoviesCard card={item} key={item.id} />;
+          return (
+            <MoviesCard
+              card={item}
+              key={item.id}
+              deleteSaveHandler={deleteSaveHandler}
+            />
+          );
         })}
       </section>
 

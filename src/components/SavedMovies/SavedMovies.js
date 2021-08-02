@@ -3,13 +3,13 @@ import Navigation from "../Navigation";
 import MoviesCardList from "./MoviesCardList";
 import SearchForm from "../Movies/SearchForm";
 
-function SavedMovies() {
+function SavedMovies({ deleteSaveHandler, movieAdded }) {
   return (
     <>
       <Navigation />
       <SearchForm />
       <section className='movies'>
-        <MoviesCardList />
+        <MoviesCardList deleteSaveHandler={deleteSaveHandler} />
       </section>
     </>
   );

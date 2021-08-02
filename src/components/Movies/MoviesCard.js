@@ -1,6 +1,6 @@
 import React from "react";
 
-function MoviesCard({ card }) {
+function MoviesCard({ card, deleteSaveHandler }) {
   const URL = "https://api.nomoreparties.co";
   function handleClickLike(e) {
     e.target.classList.toggle("movies-card__save_pressed");

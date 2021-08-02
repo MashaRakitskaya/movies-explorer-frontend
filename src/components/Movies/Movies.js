@@ -3,7 +3,14 @@ import Navigation from "../Navigation";
 import MoviesCardList from "./MoviesCardList";
 import SearchForm from "./SearchForm";
 
-function Movies({ onSearch, loggedIn, foundMovies, presenceFilms, preloader }) {
+function Movies({
+  onSearch,
+  loggedIn,
+  foundMovies,
+  presenceFilms,
+  preloader,
+  deleteSaveHandler,
+}) {
   return (
     <>
       {loggedIn && <Navigation />}
@@ -11,7 +18,11 @@ function Movies({ onSearch, loggedIn, foundMovies, presenceFilms, preloader }) {
 
       <section className='movies'>
         {presenceFilms ? (
-          <MoviesCardList foundMovies={foundMovies} preloader={preloader} />
+          <MoviesCardList
+            foundMovies={foundMovies}
+            preloader={preloader}
+            deleteSaveHandler={deleteSaveHandler}
+          />
         ) : (
           <h3>Ничего не найдено</h3>
         )}

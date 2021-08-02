@@ -1,7 +1,7 @@
 import React from "react";
 import pic from "../../images/pic__COLOR_pic.png";
 
-function MoviesCard() {
+function MoviesCard({ deleteSaveHandler, movieAdded }) {
   return (
     <>
       <article className='movies-card'>
