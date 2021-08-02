@@ -10,6 +10,8 @@ function Movies({
   presenceFilms,
   preloader,
   deleteSaveHandler,
+  movieAdded,
+  savedMovies,
 }) {
   return (
     <>
@@ -22,6 +24,8 @@ function Movies({
             foundMovies={foundMovies}
             preloader={preloader}
             deleteSaveHandler={deleteSaveHandler}
+            savedMovies={savedMovies}
+            movieAdded={movieAdded}
           />
         ) : (
           <h3>Ничего не найдено</h3>

@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from "react";
+// import { useLocation } from "react-router-dom";
 import MoviesCard from "./MoviesCard";
 import Preloader from "./Preloader";
 
-function MoviesCardList({ foundMovies, preloader, deleteSaveHandler }) {
+function MoviesCardList({
+  foundMovies,
+  preloader,
+  deleteSaveHandler,
+  savedMovies,
+  movieAdded,
+}) {
   const BIG_WIDTH = 1280;
   const MEDIUM_WIDTH = 780;
   const SMALL_WIDTH = 500;
@@ -63,6 +70,8 @@ function MoviesCardList({ foundMovies, preloader, deleteSaveHandler }) {
               card={item}
               key={item.id}
               deleteSaveHandler={deleteSaveHandler}
+              savedMovies={savedMovies}
+              movieAdded={movieAdded}
             />
           );
         })}

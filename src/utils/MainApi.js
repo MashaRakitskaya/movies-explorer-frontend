@@ -1,4 +1,5 @@
 export const BASE_URL = "https://api.rakitskaya.movies.nomoredomains.work";
+const URL = "https://api.nomoreparties.co";
 
 const checkAnswerCorrectness = (response) => {
   if (response.ok) {
@@ -52,6 +53,8 @@ export const getSaveMovies = () =>
   }).then((response) => checkAnswerCorrectness(response));
 
 export const saveMovie = (data) => {
+  console.log(data);
+  const urlImg = `${URL}` + data.image?.url;
   return fetch(`${BASE_URL}/movies`, {
     method: "POST",
     headers: {
@@ -66,10 +69,10 @@ export const saveMovie = (data) => {
       duration: data.duration,
       year: data.year,
       description: data.description,
-      image: data.image,
-      trailer: data.trailer,
-      thumbnail: data.thumbnail,
-      movieId: data.movieId,
+      image: urlImg,
+      trailer: data.trailerLink,
+      thumbnail: urlImg,
+      movieId: data.id,
       nameRU: data.nameRU,
       nameEN: data.nameEN,
     }),

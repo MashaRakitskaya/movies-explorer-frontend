@@ -42,7 +42,7 @@ function App() {
 
   function handleRegister(name, email, password) {
     MainApi.register(name, email, password)
-      .then((result) => {
+      .then(() => {
         handleLogin(email, password);
       })
       .catch((err) => {
@@ -128,9 +128,14 @@ function App() {
       });
   };
 
-  const deleteSaveMovie = (movie) => {
-    const movieId = savedMovies.find((item) => item.id === movie.id)._id;
-
+  const deleteMovie = (movie) => {
+    console.log("savedMovies", savedMovies);
+    console.log("movie", movie.id);
+    // const movieId = savedMovies.find((item) => item.id == movie.id)._id;
+    const movieId = savedMovies.find((item) => {
+      console.log("item", item._id);
+      item._id === movie.id;
+    })._id;
     MainApi.deleteSaveMovie(movieId)
       .then((res) => {
         if (res.message === "Фильм удалён") {
@@ -144,7 +149,7 @@ function App() {
   };
 
   const deleteSaveHandler = (movie, added) =>
-    added ? saveMovie(movie) : deleteSaveMovie(movie);
+    added ? saveMovie(movie) : deleteMovie(movie);
 
   const movieAdded = (movie) =>
     savedMovies.some((item) => item.movieId === movie.id);
@@ -157,9 +162,13 @@ function App() {
           if (result) {
             setLoggedIn(true);
             history.push(location.pathname);
+          } else {
+            setLoggedIn(false);
+            history.push("/");
           }
         })
         .catch((err) => {
+          setLoggedIn(false);
           history.push("/");
           console.log(`${err}`);
         });
@@ -214,6 +223,7 @@ function App() {
               preloader={preloader}
               deleteSaveHandler={deleteSaveHandler}
               movieAdded={movieAdded}
+              savedMovies={savedMovies}
             />
 
             <ProtectedRoute
