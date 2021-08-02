@@ -3,14 +3,18 @@ import Navigation from "../Navigation";
 import MoviesCardList from "./MoviesCardList";
 import SearchForm from "./SearchForm";
 
-function Movies({ onSearch, foundMovies }) {
+function Movies({ onSearch, loggedIn, foundMovies, presenceFilms, preloader }) {
   return (
     <>
-      <Navigation />
+      {loggedIn && <Navigation />}
       <SearchForm onSearch={onSearch} />
 
       <section className='movies'>
-        <MoviesCardList foundMovies={foundMovies} />
+        {presenceFilms ? (
+          <MoviesCardList foundMovies={foundMovies} preloader={preloader} />
+        ) : (
+          <h3>Ничего не найдено</h3>
+        )}
       </section>
     </>
   );

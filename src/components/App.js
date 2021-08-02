@@ -22,6 +22,8 @@ function App() {
   const [foundMovies, setFoundMovies] = useState([]);
   const history = useHistory();
   const location = useLocation();
+  const [presenceFilms, setPresenceFilms] = useState(false);
+  const [preloader, setPreloader] = useState(false);
 
   function handleLogin(email, password) {
     MainApi.authorize(email, password)
@@ -71,29 +73,37 @@ function App() {
   }
 
   function handleSearchMovies(data) {
-    console.log(data);
+    setPreloader(true);
     const filteredArray = movies
       .filter((obj) => {
         return (
-          obj.description?.toLowerCase() == data.toLowerCase() ||
-          obj.director?.toLowerCase() == data.toLowerCase() ||
-          obj.nameEN?.toLowerCase() == data.toLowerCase() ||
-          obj.nameRU?.toLowerCase() == data.toLowerCase()
+          obj.description?.toLowerCase().includes(data.toLowerCase()) ||
+          obj.director?.toLowerCase().includes(data.toLowerCase()) ||
+          obj.nameEN?.toLowerCase().includes(data.toLowerCase()) ||
+          obj.nameRU?.toLowerCase().includes(data.toLowerCase())
         );
       })
       .map((obj) => {
         return obj;
       });
+
+    if (filteredArray.length !== 0) {
+      setPresenceFilms(true);
+    } else {
+      setPresenceFilms(false);
+    }
     setFoundMovies(filteredArray);
-    localStorage.setItem("foundMovies", JSON.stringify(filteredArray));
+    setTimeout(() => {
+      // localStorage.setItem("foundMovies", JSON.stringify(filteredArray));
+      setPreloader(false);
+    }, 300);
   }
-  console.log(JSON.parse(localStorage.getItem("foundMovies")));
+
   useEffect(() => {
     if (loggedIn) {
       getUserInformation();
       getAllMovies();
     }
-    history.push(location.pathname);
   }, [loggedIn, history]);
 
   function handleTokenCheck() {
@@ -117,12 +127,13 @@ function App() {
     handleTokenCheck();
   }, []);
 
-  useEffect(() => {
-    if (location.pathname === "/movies") {
-      const foundMovies = JSON.parse(localStorage.getItem("foundMovies"));
-      setFoundMovies(foundMovies);
-    }
-  }, [location.pathname]);
+  // useEffect(() => {
+  //   if (location.pathname === "/movies") {
+  //     const foundMovies = JSON.parse(localStorage.getItem("foundMovies"));
+  //     console.log(foundMovies);
+  //     setShowFoundMovies(foundMovies);
+  //   }
+  // }, [location.pathname]);
 
   function handleSignOut() {
     localStorage.removeItem("token");
@@ -156,6 +167,8 @@ function App() {
               component={Movies}
               loggedIn={loggedIn}
               foundMovies={foundMovies}
+              presenceFilms={presenceFilms}
+              preloader={preloader}
             />
 
             <ProtectedRoute
