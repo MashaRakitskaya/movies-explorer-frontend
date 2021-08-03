@@ -182,6 +182,16 @@ function App() {
       return item.id === movie.id;
     });
   };
+
+  function editUserInfo({ name, email }) {
+    MainApi.editUserInfo({ name: name, email: email })
+      .then((res) => {
+        setCurrentUser(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   // ПРОВЕРКА ТОКЕНА
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -266,6 +276,7 @@ function App() {
               exact
               path='/profile'
               component={Profile}
+              editUserInfo={editUserInfo}
               signOut={handleSignOut}
             />
 

@@ -100,7 +100,7 @@ export const getUserInformation = () => {
 };
 
 export const editUserInfo = (data) => {
-  return fetch(`${this._address}/users/me`, {
+  return fetch(`${BASE_URL}/users/me`, {
     method: "PATCH",
     headers: {
       Accept: "application/json",
