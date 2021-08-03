@@ -1,16 +1,18 @@
 import React from "react";
 
-function MoviesCard({ card, deleteSaveHandler, savedMovies, movieAdded }) {
+function MoviesCard({ card, toggleLikeHandler, savedMovies, movieAdded }) {
   const URL = "https://api.nomoreparties.co";
   let added = movieAdded(card);
 
   // function handleClickLike(e) {
   //   e.target.classList.toggle("movies-card__save_pressed");
   // }
+  // const toggleLikeHandler = (movie, added) =>
+  //   added ? saveMovie(movie) : deleteMovie(movie);
 
   const deleteSaveClick = (e) => {
     e.preventDefault();
-    deleteSaveHandler(card, !added);
+    toggleLikeHandler(card, !added);
   };
   return (
     <article className='movies-card'>
@@ -20,7 +22,11 @@ function MoviesCard({ card, deleteSaveHandler, savedMovies, movieAdded }) {
         <button
           onClick={deleteSaveClick}
           // className='movies-card__save'
-          className={added ? "movies-card__save_pressed" : "movies-card__save"}
+          className={
+            added
+              ? "movies-card__save movies-card__save_pressed"
+              : "movies-card__save"
+          }
           type='button'
         ></button>
       </div>

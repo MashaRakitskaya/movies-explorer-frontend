@@ -1,6 +1,6 @@
 import React from "react";
 
-function MoviesCard({ card, deleteSaveHandler, movieAdded }) {
+function MoviesCard({ card, toggleLikeHandler, movieAdded }) {
   return (
     <article className='movies-card'>
       <div className='movies-card__discription'>

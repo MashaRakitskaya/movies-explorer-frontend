@@ -15,23 +15,26 @@ import * as MainApi from "../utils/MainApi";
 import * as MoviesApi from "../utils/MoviesApi";
 
 function App() {
+  const [arrey, setArrey] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
   const [error, setError] = useState(false);
-  const [movies, setMovies] = useState([]);
+  const [allMovies, setAllMovies] = useState([]);
   const [foundMovies, setFoundMovies] = useState([]);
+  const [foundSaveMovies, setFoundSaveMovies] = useState([]);
   const history = useHistory();
   const location = useLocation();
   const [presenceFilms, setPresenceFilms] = useState(false);
   const [preloader, setPreloader] = useState(false);
   const [savedMovies, setSavedMovies] = useState([]);
 
+  //РЕГИСТРАЦИЯ
   function handleLogin(email, password) {
     MainApi.authorize(email, password)
       .then((result) => {
         if (result.token) {
-          setLoggedIn(true);
           localStorage.setItem("token", result.token);
+          setLoggedIn(true);
           history.push("/movies");
         }
       })
@@ -39,7 +42,7 @@ function App() {
         console.log(err);
       });
   }
-
+  //ЛОГИН
   function handleRegister(name, email, password) {
     MainApi.register(name, email, password)
       .then(() => {
@@ -53,6 +56,7 @@ function App() {
       });
   }
 
+  //ПОЛУЧИТЬ ИНФОРМАЦИЮ О ПОЛЬЗОВАТЕТЕ
   function getUserInformation() {
     MainApi.getUserInformation()
       .then((result) => {
@@ -63,29 +67,36 @@ function App() {
       });
   }
 
+  //ПОЛУЧИТЬ ВСЕ ФИЛЬМЫ
   function getAllMovies() {
     MoviesApi.getAllMovies()
       .then((result) => {
-        setMovies(result);
+        setAllMovies(result);
       })
       .catch((err) => {
         console.log(err);
       });
   }
 
+  //ПОЛУЧИТЬ СОХРАНЕННЫЕ ФИЛЬМЫ
   const getSaveMovies = () => {
     MainApi.getSaveMovies()
       .then((result) => {
-        setSavedMovies(result);
+        const currentUserSavedMovies = result.filter((m) => {
+          return m.owner === currentUser._id;
+        });
+        setSavedMovies(currentUserSavedMovies);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
+  //ПОИСК
   function handleSearchMovies(data) {
     setPreloader(true);
-    const filteredArray = movies
+
+    const filteredArray = arrey
       .filter((obj) => {
         return (
           obj.description?.toLowerCase().includes(data.toLowerCase()) ||
@@ -97,19 +108,36 @@ function App() {
       .map((obj) => {
         return obj;
       });
+    console.log(arrey);
 
     if (filteredArray.length !== 0) {
       setPresenceFilms(true);
     } else {
       setPresenceFilms(false);
     }
-    setFoundMovies(filteredArray);
+
+    if (location.pathname === "/movies") {
+      setFoundMovies(filteredArray);
+    } else if (location.pathname === "/saved-movies") {
+      setSavedMovies(filteredArray);
+      // setFoundSaveMovies(filteredArray);
+    }
     setTimeout(() => {
-      // localStorage.setItem("foundMovies", JSON.stringify(filteredArray));
       setPreloader(false);
     }, 300);
   }
+  //смотря какой путь будет поиск по разным массивам
+  useEffect(() => {
+    if (location.pathname === "/movies") {
+      setArrey(allMovies);
+      console.log(arrey);
+    } else if (location.pathname === "/saved-movies") {
+      setArrey(savedMovies);
+      console.log(savedMovies);
+    }
+  }, [location.pathname, allMovies, savedMovies, arrey]);
 
+  //ВЫЗВАТЬ ВСЕ ФМЛЬМЫ, СОХРАНЕННЫЕ ФИЛЬМЫ И ИНФОРМАЦИЮ О ПОЛЬЗОВАТЕЛЕ
   useEffect(() => {
     if (loggedIn) {
       getUserInformation();
@@ -118,6 +146,7 @@ function App() {
     }
   }, [loggedIn, history]);
 
+  //СОХРАНИТЬ ФИЛЬМ
   const saveMovie = (movie) => {
     MainApi.saveMovie(movie)
       .then((res) => {
@@ -128,18 +157,15 @@ function App() {
       });
   };
 
+  //УДАЛИТЬ ФИЛЬМ
   const deleteMovie = (movie) => {
-    console.log("savedMovies", savedMovies);
-    console.log("movie", movie.id);
-    // const movieId = savedMovies.find((item) => item.id == movie.id)._id;
-    const movieId = savedMovies.find((item) => {
-      console.log("item", item._id);
-      item._id === movie.id;
-    })._id;
+    const movieId = savedMovies.find((item) => item._id === movie.id)._id;
     MainApi.deleteSaveMovie(movieId)
       .then((res) => {
         if (res.message === "Фильм удалён") {
-          const newArray = savedMovies.filter((item) => item._id !== movieId);
+          const newArray = savedMovies.filter((item) => {
+            item._id !== movieId;
+          });
           setSavedMovies([...newArray]);
         }
       })
@@ -148,13 +174,14 @@ function App() {
       });
   };
 
-  const deleteSaveHandler = (movie, added) =>
+  const toggleLikeHandler = (movie, added) =>
     added ? saveMovie(movie) : deleteMovie(movie);
 
   const movieAdded = (movie) =>
     savedMovies.some((item) => item.movieId === movie.id);
 
-  function handleTokenCheck() {
+  //ПРОВЕРКА ТОКЕНА
+  useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       MainApi.checkToken(token)
@@ -162,34 +189,26 @@ function App() {
           if (result) {
             setLoggedIn(true);
             history.push(location.pathname);
-          } else {
-            setLoggedIn(false);
-            history.push("/");
           }
         })
         .catch((err) => {
           setLoggedIn(false);
-          history.push("/");
+          localStorage.removeItem("token");
+          history.push("/signin");
           console.log(`${err}`);
         });
     }
-  }
-
-  useEffect(() => {
-    handleTokenCheck();
   }, []);
 
-  // useEffect(() => {
-  //   if (location.pathname === "/movies") {
-  //     const foundMovies = JSON.parse(localStorage.getItem("foundMovies"));
-  //     console.log(foundMovies);
-  //     setShowFoundMovies(foundMovies);
-  //   }
-  // }, [location.pathname]);
-
+  //ВЫХОД
   function handleSignOut() {
     localStorage.removeItem("token");
     setLoggedIn(false);
+    setFoundSaveMovies([]);
+    setFoundMovies([]);
+    setAllMovies([]);
+    setArrey([]);
+    setCurrentUser({});
     history.push("/signin");
   }
 
@@ -198,7 +217,7 @@ function App() {
       <div className='page__container'>
         <CurrentUserContext.Provider value={currentUser}>
           <Route exact path={["/"]}>
-            <Header loggedIn={loggedIn} />
+            <Header />
           </Route>
 
           <Switch>
@@ -213,7 +232,6 @@ function App() {
             </Route>
 
             <ProtectedRoute
-              exact
               path='/movies'
               onSearch={handleSearchMovies}
               component={Movies}
@@ -221,19 +239,22 @@ function App() {
               foundMovies={foundMovies}
               presenceFilms={presenceFilms}
               preloader={preloader}
-              deleteSaveHandler={deleteSaveHandler}
+              toggleLikeHandler={toggleLikeHandler}
               movieAdded={movieAdded}
               savedMovies={savedMovies}
             />
 
             <ProtectedRoute
-              exact
               path='/saved-movies'
               component={SavedMovies}
               loggedIn={loggedIn}
-              deleteSaveHandler={deleteSaveHandler}
+              toggleLikeHandler={toggleLikeHandler}
               movieAdded={movieAdded}
               savedMovies={savedMovies}
+              onSearch={handleSearchMovies}
+              presenceFilms={presenceFilms}
+              foundSaveMovies={foundSaveMovies}
+              preloader={preloader}
             />
 
             <ProtectedRoute

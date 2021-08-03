@@ -6,7 +6,7 @@ import Preloader from "./Preloader";
 function MoviesCardList({
   foundMovies,
   preloader,
-  deleteSaveHandler,
+  toggleLikeHandler,
   savedMovies,
   movieAdded,
 }) {
@@ -23,10 +23,10 @@ function MoviesCardList({
     if (windowSize > SMALL_WIDTH && windowSize <= MEDIUM_WIDTH) {
       return { first: 8, next: 2 };
     }
-    if (windowSize < SMALL_WIDTH) {
-      return { first: 5, next: 2 };
-    }
-    return { first: 12, next: 3 };
+    // if (windowSize < SMALL_WIDTH) {
+    //   return { first: 5, next: 2 };
+    // }
+    return { first: 5, next: 2 };
   }
 
   const resizeHandler = () => {
@@ -62,27 +62,34 @@ function MoviesCardList({
   return (
     <>
       <div className='line'></div>
-      {preloader && <Preloader />}
-      <section className='movies-card-list'>
-        {showFoundMovies.map((item) => {
-          return (
-            <MoviesCard
-              card={item}
-              key={item.id}
-              deleteSaveHandler={deleteSaveHandler}
-              savedMovies={savedMovies}
-              movieAdded={movieAdded}
-            />
-          );
-        })}
-      </section>
-
-      {showFoundMovies.length < foundMovies.length && (
-        <div className='movies-card-list__box-button'>
-          <button onClick={addMore} className='movies-card-list__button-more'>
-            Еще
-          </button>
-        </div>
+      {preloader ? (
+        <Preloader />
+      ) : (
+        <>
+          <section className='movies-card-list'>
+            {showFoundMovies.map((item) => {
+              return (
+                <MoviesCard
+                  card={item}
+                  key={item.id}
+                  toggleLikeHandler={toggleLikeHandler}
+                  savedMovies={savedMovies}
+                  movieAdded={movieAdded}
+                />
+              );
+            })}
+          </section>
+          {showFoundMovies.length < foundMovies.length && (
+            <div className='movies-card-list__box-button'>
+              <button
+                onClick={addMore}
+                className='movies-card-list__button-more'
+              >
+                Еще
+              </button>
+            </div>
+          )}
+        </>
       )}
     </>
   );

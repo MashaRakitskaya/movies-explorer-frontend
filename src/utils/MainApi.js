@@ -53,7 +53,6 @@ export const getSaveMovies = () =>
   }).then((response) => checkAnswerCorrectness(response));
 
 export const saveMovie = (data) => {
-  console.log(data);
   const urlImg = `${URL}` + data.image?.url;
   return fetch(`${BASE_URL}/movies`, {
     method: "POST",

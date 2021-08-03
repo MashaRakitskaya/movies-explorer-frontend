@@ -9,7 +9,7 @@ function Movies({
   foundMovies,
   presenceFilms,
   preloader,
-  deleteSaveHandler,
+  toggleLikeHandler,
   movieAdded,
   savedMovies,
 }) {
@@ -23,7 +23,7 @@ function Movies({
           <MoviesCardList
             foundMovies={foundMovies}
             preloader={preloader}
-            deleteSaveHandler={deleteSaveHandler}
+            toggleLikeHandler={toggleLikeHandler}
             savedMovies={savedMovies}
             movieAdded={movieAdded}
           />
