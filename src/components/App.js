@@ -28,7 +28,7 @@ function App() {
   const [preloader, setPreloader] = useState(false);
   const [savedMovies, setSavedMovies] = useState([]);
 
-  //РЕГИСТРАЦИЯ
+  // РЕГИСТРАЦИЯ
   function handleLogin(email, password) {
     MainApi.authorize(email, password)
       .then((result) => {
@@ -42,7 +42,7 @@ function App() {
         console.log(err);
       });
   }
-  //ЛОГИН
+  // ЛОГИН
   function handleRegister(name, email, password) {
     MainApi.register(name, email, password)
       .then(() => {
@@ -56,7 +56,7 @@ function App() {
       });
   }
 
-  //ПОЛУЧИТЬ ИНФОРМАЦИЮ О ПОЛЬЗОВАТЕТЕ
+  // ПОЛУЧИТЬ ИНФОРМАЦИЮ О ПОЛЬЗОВАТЕТЕ
   function getUserInformation() {
     MainApi.getUserInformation()
       .then((result) => {
@@ -67,7 +67,7 @@ function App() {
       });
   }
 
-  //ПОЛУЧИТЬ ВСЕ ФИЛЬМЫ
+  // ПОЛУЧИТЬ ВСЕ ФИЛЬМЫ
   function getAllMovies() {
     MoviesApi.getAllMovies()
       .then((result) => {
@@ -78,24 +78,33 @@ function App() {
       });
   }
 
-  //ПОЛУЧИТЬ СОХРАНЕННЫЕ ФИЛЬМЫ
-  const getSaveMovies = () => {
+  // ПОЛУЧИТЬ СОХРАНЕННЫЕ ФИЛЬМЫ
+  function getSaveMovies() {
     MainApi.getSaveMovies()
       .then((result) => {
         const currentUserSavedMovies = result.filter((m) => {
           return m.owner === currentUser._id;
         });
+
         setSavedMovies(currentUserSavedMovies);
       })
       .catch((err) => {
         console.log(err);
       });
-  };
+  }
 
-  //ПОИСК
+  // смотря какой путь будет поиск по разным массивам
+  useEffect(() => {
+    if (location.pathname === "/movies") {
+      setArrey(allMovies);
+    } else if (location.pathname === "/saved-movies") {
+      setArrey(savedMovies);
+    }
+  }, [location.pathname, allMovies, savedMovies, arrey]);
+
+  // ПОИСК
   function handleSearchMovies(data) {
     setPreloader(true);
-
     const filteredArray = arrey
       .filter((obj) => {
         return (
@@ -108,7 +117,6 @@ function App() {
       .map((obj) => {
         return obj;
       });
-    console.log(arrey);
 
     if (filteredArray.length !== 0) {
       setPresenceFilms(true);
@@ -120,24 +128,13 @@ function App() {
       setFoundMovies(filteredArray);
     } else if (location.pathname === "/saved-movies") {
       setSavedMovies(filteredArray);
-      // setFoundSaveMovies(filteredArray);
+      setFoundSaveMovies(filteredArray);
     }
     setTimeout(() => {
       setPreloader(false);
     }, 300);
   }
-  //смотря какой путь будет поиск по разным массивам
-  useEffect(() => {
-    if (location.pathname === "/movies") {
-      setArrey(allMovies);
-      console.log(arrey);
-    } else if (location.pathname === "/saved-movies") {
-      setArrey(savedMovies);
-      console.log(savedMovies);
-    }
-  }, [location.pathname, allMovies, savedMovies, arrey]);
-
-  //ВЫЗВАТЬ ВСЕ ФМЛЬМЫ, СОХРАНЕННЫЕ ФИЛЬМЫ И ИНФОРМАЦИЮ О ПОЛЬЗОВАТЕЛЕ
+  // ВЫЗВАТЬ ВСЕ ФМЛЬМЫ, СОХРАНЕННЫЕ ФИЛЬМЫ И ИНФОРМАЦИЮ О ПОЛЬЗОВАТЕЛЕ
   useEffect(() => {
     if (loggedIn) {
       getUserInformation();
@@ -146,7 +143,7 @@ function App() {
     }
   }, [loggedIn, history]);
 
-  //СОХРАНИТЬ ФИЛЬМ
+  // СОХРАНИТЬ ФИЛЬМ
   const saveMovie = (movie) => {
     MainApi.saveMovie(movie)
       .then((res) => {
@@ -157,14 +154,17 @@ function App() {
       });
   };
 
-  //УДАЛИТЬ ФИЛЬМ
+  // УДАЛИТЬ ФИЛЬМ
   const deleteMovie = (movie) => {
-    const movieId = savedMovies.find((item) => item._id === movie.id)._id;
+    const movieId = savedMovies.find((item) => {
+      return item.id === movie.id;
+    })._id;
+
     MainApi.deleteSaveMovie(movieId)
       .then((res) => {
         if (res.message === "Фильм удалён") {
           const newArray = savedMovies.filter((item) => {
-            item._id !== movieId;
+            return item._id !== movieId;
           });
           setSavedMovies([...newArray]);
         }
@@ -177,10 +177,12 @@ function App() {
   const toggleLikeHandler = (movie, added) =>
     added ? saveMovie(movie) : deleteMovie(movie);
 
-  const movieAdded = (movie) =>
-    savedMovies.some((item) => item.movieId === movie.id);
-
-  //ПРОВЕРКА ТОКЕНА
+  const movieAdded = (movie) => {
+    return savedMovies.some((item) => {
+      return item.id === movie.id;
+    });
+  };
+  // ПРОВЕРКА ТОКЕНА
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -200,7 +202,7 @@ function App() {
     }
   }, []);
 
-  //ВЫХОД
+  // ВЫХОД
   function handleSignOut() {
     localStorage.removeItem("token");
     setLoggedIn(false);
@@ -209,6 +211,8 @@ function App() {
     setAllMovies([]);
     setArrey([]);
     setCurrentUser({});
+    setPresenceFilms(false);
+    localStorage.removeItem("allMovies");
     history.push("/signin");
   }
 

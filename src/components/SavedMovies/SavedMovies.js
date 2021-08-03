@@ -12,7 +12,6 @@ function SavedMovies({
   foundSaveMovies,
   preloader,
 }) {
-  console.log(savedMovies);
   return (
     <>
       <Navigation />
@@ -20,6 +19,7 @@ function SavedMovies({
       <section className='movies'>
         {savedMovies.length !== 0 ? (
           <MoviesCardList
+            movieAdded={movieAdded}
             preloader={preloader}
             foundSaveMovies={foundSaveMovies}
             savedMovies={savedMovies}

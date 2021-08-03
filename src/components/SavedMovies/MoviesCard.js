@@ -1,12 +1,22 @@
 import React from "react";
 
 function MoviesCard({ card, toggleLikeHandler, movieAdded }) {
+  let added = movieAdded(card);
+  const handleToggleClick = (e) => {
+    e.preventDefault();
+    toggleLikeHandler(card, !added);
+  };
+
   return (
     <article className='movies-card'>
       <div className='movies-card__discription'>
         <h2 className='movies-card__title'>{card.nameRU}</h2>
         <p className='movies-card__time'>{card.duration}</p>
-        <button className='movies-card__delete' type='button'></button>
+        <button
+          onClick={handleToggleClick}
+          className='movies-card__delete'
+          type='button'
+        ></button>
       </div>
       <img
         className='movies-card__image'

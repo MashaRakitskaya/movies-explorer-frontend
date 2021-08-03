@@ -9,7 +9,6 @@ function MoviesCardList({
   foundSaveMovies,
   preloader,
 }) {
-  console.log(foundSaveMovies);
   return (
     <>
       <div className='line'></div>
