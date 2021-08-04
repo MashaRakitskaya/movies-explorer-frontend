@@ -24,7 +24,8 @@ function App() {
   const [arrey, setArrey] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
-  const [error, setError] = useState(false);
+  const [errorSignUp, setErrorSignUp] = useState(false);
+  const [errorSignIn, setErrorSignIn] = useState(false);
   const [allMovies, setAllMovies] = useState([]);
   const [foundMovies, setFoundMovies] = useState([]);
   const history = useHistory();
@@ -45,6 +46,7 @@ function App() {
         }
       })
       .catch((err) => {
+        setErrorSignIn(true);
         console.log(err);
       });
   }
@@ -57,7 +59,7 @@ function App() {
       })
       .catch((err) => {
         if (err) {
-          setError(true);
+          setErrorSignUp(true);
           console.log(err);
         }
       });
@@ -90,7 +92,7 @@ function App() {
     function () {
       MainApi.getSaveMovies()
         .then((result) => {
-          //выводим только собственные фильмы сохраненные
+          // выводим только собственные фильмы сохраненные
           const currentUserSavedMovies = result.filter((m) => {
             return m.owner == currentUser._id;
           });
@@ -208,7 +210,7 @@ function App() {
       });
   }
 
-  //ПРОВЕРКА ТОКЕНА
+  // ПРОВЕРКА ТОКЕНА
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -254,10 +256,10 @@ function App() {
               <Main />
             </Route>
             <Route path='/signup'>
-              <Register error={error} onRegister={handleRegister} />
+              <Register error={errorSignUp} onRegister={handleRegister} />
             </Route>
             <Route path='/signin'>
-              <Login onLogin={handleLogin} />
+              <Login error={errorSignIn} onLogin={handleLogin} />
             </Route>
 
             <ProtectedRoute
