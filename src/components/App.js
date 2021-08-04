@@ -17,6 +17,7 @@ import * as MoviesApi from "../utils/MoviesApi";
 function App() {
   const [arrey, setArrey] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
+  // const [loggedIn, setLoggedIn] = useState(!!localStorage.getItem("token"));
   const [loggedIn, setLoggedIn] = useState(false);
   const [error, setError] = useState(false);
   const [allMovies, setAllMovies] = useState([]);
@@ -99,15 +100,32 @@ function App() {
 
   // смотря какой путь будет поиск по разным массивам
   useEffect(() => {
+    console.log("useEffect");
     if (location.pathname === "/movies") {
       setArrey(allMovies);
+
+      const foundString = localStorage.getItem("string");
+
+      if (foundString && !foundMovies.length) {
+        handleSearchMovies(foundString);
+      }
     } else if (location.pathname === "/saved-movies") {
       setArrey(arrey.length ? arrey : [...savedMovies]);
     }
-  }, [location.pathname, allMovies, savedMovies]);
+  }, [location.pathname, allMovies]);
+
+  // useEffect(() => {
+  //   if (location.pathname === "/movies") {
+  //     const foundString = localStorage.getItem("string");
+  //     if (foundString) {
+  //       handleSearchMovies(foundString);
+  //     }
+  //   }
+  // }, [location.pathname, allMovies]);
 
   // ПОИСК
   function handleSearchMovies(data) {
+    console.log("handleSearchMovies");
     setPreloader(true);
     const filteredArray = arrey.filter((obj) => {
       return (
@@ -126,9 +144,9 @@ function App() {
 
     if (location.pathname === "/movies") {
       setFoundMovies(filteredArray);
+      localStorage.setItem("string", data);
     } else if (location.pathname === "/saved-movies") {
       setSavedMovies(filteredArray);
-      // setFoundSaveMovies(filteredArray);
     }
 
     setTimeout(() => {
@@ -196,7 +214,7 @@ function App() {
       });
   }
 
-  // ПРОВЕРКА ТОКЕНА
+  //ПРОВЕРКА ТОКЕНА
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -225,7 +243,7 @@ function App() {
     setArrey([]);
     setCurrentUser({});
     setPresenceFilms(false);
-    localStorage.removeItem("allMovies");
+    localStorage.removeItem("string");
     history.push("/signin");
   }
 
@@ -273,9 +291,8 @@ function App() {
             />
 
             <ProtectedRoute
-              loggedIn={loggedIn}
-              exact
               path='/profile'
+              loggedIn={loggedIn}
               component={Profile}
               editUserInfo={editUserInfo}
               signOut={handleSignOut}
