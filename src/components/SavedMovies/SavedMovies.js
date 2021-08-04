@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navigation from "../Navigation";
 import MoviesCardList from "./MoviesCardList";
 import SearchForm from "../Movies/SearchForm";
+import { DURATION_MOVIE } from "../../utils/constants";
 
 function SavedMovies({
   toggleLikeHandler,
@@ -10,16 +11,31 @@ function SavedMovies({
   onSearch,
   preloader,
 }) {
+  const [showFoundMovies, setShowFoundMovies] = useState([]);
+
+  useEffect(() => {
+    setShowFoundMovies(savedMovies);
+  }, [savedMovies]);
+
+  const [filter, setfilter] = useState(false);
+  const filterMovies = (movies) =>
+    movies.filter((item) => item.duration < DURATION_MOVIE);
+
+  const onFilter = () => {
+    setfilter(!filter);
+  };
   return (
     <>
       <Navigation />
-      <SearchForm onSearch={onSearch} />
+      <SearchForm onSearch={onSearch} onFilter={onFilter} />
       <section className='movies'>
-        {savedMovies.length !== 0 ? (
+        {showFoundMovies.length !== 0 ? (
           <MoviesCardList
             movieAdded={movieAdded}
             preloader={preloader}
-            savedMovies={savedMovies}
+            showFoundMovies={
+              filter ? filterMovies(showFoundMovies) : showFoundMovies
+            }
             toggleLikeHandler={toggleLikeHandler}
           />
         ) : (

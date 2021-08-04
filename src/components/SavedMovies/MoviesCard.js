@@ -11,6 +11,7 @@ function MoviesCard({ card, toggleLikeHandler, movieAdded }) {
     let minut = data % 60;
     return hour + "ч " + minut + "м";
   }
+
   return (
     <article className='movies-card'>
       <div className='movies-card__discription'>
@@ -22,11 +23,13 @@ function MoviesCard({ card, toggleLikeHandler, movieAdded }) {
           type='button'
         ></button>
       </div>
-      <img
-        className='movies-card__image'
-        src={card.image}
-        alt='Фото заставка фильма'
-      />
+      <a href={card.trailer} rel='noreferrer' target='_blank'>
+        <img
+          className='movies-card__image'
+          src={card.image}
+          alt='Фото заставка фильма'
+        />
+      </a>
     </article>
   );
 }

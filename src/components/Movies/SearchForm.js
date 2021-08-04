@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import FilterCheckbox from "./FilterCheckbox";
 import rearch from "../../images/search.svg";
 
-function SearchForm({ onSearch }) {
+function SearchForm({ onSearch, onFilter }) {
   const [data, setdata] = useState("");
 
   const handleInput = (e) => {
@@ -30,7 +30,7 @@ function SearchForm({ onSearch }) {
           ></input>
           <button type='submit' className='search-form__button'></button>
         </form>
-        <FilterCheckbox />
+        <FilterCheckbox onFilter={onFilter} />
       </div>
     </section>
   );

@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from "react";
-// import { useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import MoviesCard from "./MoviesCard";
 import Preloader from "./Preloader";
+import { BIG_WIDTH, MEDIUM_WIDTH, SMALL_WIDTH } from "../../utils/constants";
 
 function MoviesCardList({
   foundMovies,
@@ -10,9 +10,6 @@ function MoviesCardList({
   savedMovies,
   movieAdded,
 }) {
-  const BIG_WIDTH = 1280;
-  const MEDIUM_WIDTH = 780;
-  const SMALL_WIDTH = 500;
   const [showFoundMovies, setShowFoundMovies] = useState([]);
   let count;
 
@@ -23,9 +20,6 @@ function MoviesCardList({
     if (windowSize > SMALL_WIDTH && windowSize <= MEDIUM_WIDTH) {
       return { first: 8, next: 2 };
     }
-    // if (windowSize < SMALL_WIDTH) {
-    //   return { first: 5, next: 2 };
-    // }
     return { first: 5, next: 2 };
   }
 

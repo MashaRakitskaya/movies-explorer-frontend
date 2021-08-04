@@ -1,5 +1,11 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Route, Switch, useHistory, useLocation } from "react-router-dom";
+import {
+  Redirect,
+  Route,
+  Switch,
+  useHistory,
+  useLocation,
+} from "react-router-dom";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import ProtectedRoute from "./ProtectedRoute.js";
 import Header from "./Header";
@@ -17,7 +23,6 @@ import * as MoviesApi from "../utils/MoviesApi";
 function App() {
   const [arrey, setArrey] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
-  // const [loggedIn, setLoggedIn] = useState(!!localStorage.getItem("token"));
   const [loggedIn, setLoggedIn] = useState(false);
   const [error, setError] = useState(false);
   const [allMovies, setAllMovies] = useState([]);
@@ -100,7 +105,6 @@ function App() {
 
   // смотря какой путь будет поиск по разным массивам
   useEffect(() => {
-    console.log("useEffect");
     if (location.pathname === "/movies") {
       setArrey(allMovies);
 
@@ -114,18 +118,8 @@ function App() {
     }
   }, [location.pathname, allMovies]);
 
-  // useEffect(() => {
-  //   if (location.pathname === "/movies") {
-  //     const foundString = localStorage.getItem("string");
-  //     if (foundString) {
-  //       handleSearchMovies(foundString);
-  //     }
-  //   }
-  // }, [location.pathname, allMovies]);
-
   // ПОИСК
   function handleSearchMovies(data) {
-    console.log("handleSearchMovies");
     setPreloader(true);
     const filteredArray = arrey.filter((obj) => {
       return (
@@ -301,6 +295,7 @@ function App() {
             <Route path='/404'>
               <PageNotFound />
             </Route>
+            <Redirect to='/404' />
           </Switch>
           <Route exact path={["/", "/movies", "/saved-movies"]}>
             <Footer />

@@ -1,4 +1,4 @@
-export const BASE_URL = "https://api.nomoreparties.co";
+import { URL_NOMOREPATIES } from "./constants";
 
 const checkAnswerCorrectness = (response) => {
   if (response.ok) {
@@ -9,7 +9,7 @@ const checkAnswerCorrectness = (response) => {
 };
 
 export const getAllMovies = () =>
-  fetch(`${BASE_URL}/beatfilm-movies`, {
+  fetch(`${URL_NOMOREPATIES}/beatfilm-movies`, {
     method: "GET",
     headers: {
       Accept: "application/json",

@@ -1,14 +1,8 @@
 import React from "react";
+import { URL_NOMOREPATIES } from "../../utils/constants";
 
-function MoviesCard({ card, toggleLikeHandler, savedMovies, movieAdded }) {
-  const URL = "https://api.nomoreparties.co";
+function MoviesCard({ card, toggleLikeHandler, movieAdded }) {
   let added = movieAdded(card);
-
-  // function handleClickLike(e) {
-  //   e.target.classList.toggle("movies-card__save_pressed");
-  // }
-  // const toggleLikeHandler = (movie, added) =>
-  //   added ? saveMovie(movie) : deleteMovie(movie);
 
   const deleteSaveClick = (e) => {
     e.preventDefault();
@@ -20,6 +14,7 @@ function MoviesCard({ card, toggleLikeHandler, savedMovies, movieAdded }) {
     let minut = data % 60;
     return hour + "ч " + minut + "м";
   }
+
   return (
     <article className='movies-card'>
       <div className='movies-card__discription'>
@@ -27,7 +22,6 @@ function MoviesCard({ card, toggleLikeHandler, savedMovies, movieAdded }) {
         <p className='movies-card__time'>{timeHandler(card.duration)}</p>
         <button
           onClick={deleteSaveClick}
-          // className='movies-card__save'
           className={
             added
               ? "movies-card__save movies-card__save_pressed"
@@ -36,11 +30,13 @@ function MoviesCard({ card, toggleLikeHandler, savedMovies, movieAdded }) {
           type='button'
         ></button>
       </div>
-      <img
-        className='movies-card__image'
-        src={`${URL}` + card.image.url}
-        alt='Фото заставка фильма'
-      />
+      <a href={card.trailerLink} rel='noreferrer' target='_blank'>
+        <img
+          className='movies-card__image'
+          src={`${URL_NOMOREPATIES}` + card.image.url}
+          alt='Фото заставка фильма'
+        />
+      </a>
     </article>
   );
 }

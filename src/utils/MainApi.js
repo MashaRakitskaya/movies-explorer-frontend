@@ -1,5 +1,4 @@
-export const BASE_URL = "https://api.rakitskaya.movies.nomoredomains.work";
-const URL = "https://api.nomoreparties.co";
+import { BASE_URL, URL_NOMOREPATIES } from "./constants";
 
 const checkAnswerCorrectness = (response) => {
   if (response.ok) {
@@ -53,7 +52,7 @@ export const getSaveMovies = () =>
   }).then((response) => checkAnswerCorrectness(response));
 
 export const saveMovie = (data) => {
-  const urlImg = `${URL}` + data.image?.url;
+  const urlImg = `${URL_NOMOREPATIES}` + data.image?.url;
   return fetch(`${BASE_URL}/movies`, {
     method: "POST",
     headers: {
