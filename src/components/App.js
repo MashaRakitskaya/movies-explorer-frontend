@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Route, Switch, useHistory, useLocation } from "react-router-dom";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import ProtectedRoute from "./ProtectedRoute.js";
@@ -21,7 +21,6 @@ function App() {
   const [error, setError] = useState(false);
   const [allMovies, setAllMovies] = useState([]);
   const [foundMovies, setFoundMovies] = useState([]);
-  const [foundSaveMovies, setFoundSaveMovies] = useState([]);
   const history = useHistory();
   const location = useLocation();
   const [presenceFilms, setPresenceFilms] = useState(false);
@@ -35,6 +34,7 @@ function App() {
         if (result.token) {
           localStorage.setItem("token", result.token);
           setLoggedIn(true);
+          getUserInformation();
           history.push("/movies");
         }
       })
@@ -42,6 +42,7 @@ function App() {
         console.log(err);
       });
   }
+
   // ЛОГИН
   function handleRegister(name, email, password) {
     MainApi.register(name, email, password)
@@ -79,44 +80,43 @@ function App() {
   }
 
   // ПОЛУЧИТЬ СОХРАНЕННЫЕ ФИЛЬМЫ
-  function getSaveMovies() {
-    MainApi.getSaveMovies()
-      .then((result) => {
-        const currentUserSavedMovies = result.filter((m) => {
-          return m.owner === currentUser._id;
+  const getSaveMovies = useCallback(
+    function () {
+      MainApi.getSaveMovies()
+        .then((result) => {
+          //выводим только собственные фильмы сохраненные
+          const currentUserSavedMovies = result.filter((m) => {
+            return m.owner == currentUser._id;
+          });
+          setSavedMovies(currentUserSavedMovies);
+        })
+        .catch((err) => {
+          console.log(err);
         });
-
-        setSavedMovies(currentUserSavedMovies);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+    },
+    [currentUser]
+  );
 
   // смотря какой путь будет поиск по разным массивам
   useEffect(() => {
     if (location.pathname === "/movies") {
       setArrey(allMovies);
     } else if (location.pathname === "/saved-movies") {
-      setArrey(savedMovies);
+      setArrey(arrey.length ? arrey : [...savedMovies]);
     }
-  }, [location.pathname, allMovies, savedMovies, arrey]);
+  }, [location.pathname, allMovies, savedMovies]);
 
   // ПОИСК
   function handleSearchMovies(data) {
     setPreloader(true);
-    const filteredArray = arrey
-      .filter((obj) => {
-        return (
-          obj.description?.toLowerCase().includes(data.toLowerCase()) ||
-          obj.director?.toLowerCase().includes(data.toLowerCase()) ||
-          obj.nameEN?.toLowerCase().includes(data.toLowerCase()) ||
-          obj.nameRU?.toLowerCase().includes(data.toLowerCase())
-        );
-      })
-      .map((obj) => {
-        return obj;
-      });
+    const filteredArray = arrey.filter((obj) => {
+      return (
+        obj.description?.toLowerCase().includes(data.toLowerCase()) ||
+        obj.director?.toLowerCase().includes(data.toLowerCase()) ||
+        obj.nameEN?.toLowerCase().includes(data.toLowerCase()) ||
+        obj.nameRU?.toLowerCase().includes(data.toLowerCase())
+      );
+    });
 
     if (filteredArray.length !== 0) {
       setPresenceFilms(true);
@@ -128,26 +128,27 @@ function App() {
       setFoundMovies(filteredArray);
     } else if (location.pathname === "/saved-movies") {
       setSavedMovies(filteredArray);
-      setFoundSaveMovies(filteredArray);
+      // setFoundSaveMovies(filteredArray);
     }
+
     setTimeout(() => {
       setPreloader(false);
     }, 300);
   }
+
   // ВЫЗВАТЬ ВСЕ ФМЛЬМЫ, СОХРАНЕННЫЕ ФИЛЬМЫ И ИНФОРМАЦИЮ О ПОЛЬЗОВАТЕЛЕ
   useEffect(() => {
-    if (loggedIn) {
-      getUserInformation();
-      getAllMovies();
-      getSaveMovies();
-    }
-  }, [loggedIn, history]);
+    getUserInformation();
+    getAllMovies();
+    getSaveMovies();
+  }, [location.pathname]);
 
   // СОХРАНИТЬ ФИЛЬМ
   const saveMovie = (movie) => {
     MainApi.saveMovie(movie)
       .then((res) => {
-        setSavedMovies([...savedMovies, { ...res, id: res.movieId }]);
+        // setSavedMovies(res);
+        setSavedMovies([...savedMovies, res]);
       })
       .catch((err) => {
         console.log(err);
@@ -156,9 +157,11 @@ function App() {
 
   // УДАЛИТЬ ФИЛЬМ
   const deleteMovie = (movie) => {
-    const movieId = savedMovies.find((item) => {
-      return item.id === movie.id;
-    })._id;
+    const movieId = movie._id
+      ? movie._id
+      : savedMovies.find((item) => {
+          return item.movieId === movie.id;
+        })._id;
 
     MainApi.deleteSaveMovie(movieId)
       .then((res) => {
@@ -178,8 +181,8 @@ function App() {
     added ? saveMovie(movie) : deleteMovie(movie);
 
   const movieAdded = (movie) => {
-    return savedMovies.some((item) => {
-      return item.id === movie.id;
+    return savedMovies.find((item) => {
+      return movie._id ? item._id === movie._id : item.movieId === movie.id;
     });
   };
 
@@ -192,6 +195,7 @@ function App() {
         console.log(err);
       });
   }
+
   // ПРОВЕРКА ТОКЕНА
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -216,7 +220,6 @@ function App() {
   function handleSignOut() {
     localStorage.removeItem("token");
     setLoggedIn(false);
-    setFoundSaveMovies([]);
     setFoundMovies([]);
     setAllMovies([]);
     setArrey([]);
@@ -266,8 +269,6 @@ function App() {
               movieAdded={movieAdded}
               savedMovies={savedMovies}
               onSearch={handleSearchMovies}
-              presenceFilms={presenceFilms}
-              foundSaveMovies={foundSaveMovies}
               preloader={preloader}
             />
 

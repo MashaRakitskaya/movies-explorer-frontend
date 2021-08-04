@@ -8,8 +8,6 @@ function SavedMovies({
   movieAdded,
   savedMovies,
   onSearch,
-  presenceFilms,
-  foundSaveMovies,
   preloader,
 }) {
   return (
@@ -21,7 +19,6 @@ function SavedMovies({
           <MoviesCardList
             movieAdded={movieAdded}
             preloader={preloader}
-            foundSaveMovies={foundSaveMovies}
             savedMovies={savedMovies}
             toggleLikeHandler={toggleLikeHandler}
           />

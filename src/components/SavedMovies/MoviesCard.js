@@ -6,12 +6,16 @@ function MoviesCard({ card, toggleLikeHandler, movieAdded }) {
     e.preventDefault();
     toggleLikeHandler(card, !added);
   };
-
+  function timeHandler(data) {
+    let hour = Math.trunc(data / 60);
+    let minut = data % 60;
+    return hour + "ч " + minut + "м";
+  }
   return (
     <article className='movies-card'>
       <div className='movies-card__discription'>
         <h2 className='movies-card__title'>{card.nameRU}</h2>
-        <p className='movies-card__time'>{card.duration}</p>
+        <p className='movies-card__time'>{timeHandler(card.duration)}</p>
         <button
           onClick={handleToggleClick}
           className='movies-card__delete'

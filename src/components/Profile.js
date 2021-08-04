@@ -4,14 +4,7 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Profile({ signOut, editUserInfo }) {
   const currentUser = React.useContext(CurrentUserContext);
-  console.log(currentUser);
   const [userData, setUserData] = useState(currentUser);
-
-  // const initialData = {
-  //   name: "",
-  //   email: "",
-  // };
-  // const [data, setData] = useState(userData);
 
   const handleChange = (event) => {
     const { name, value } = event.target;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 // import { useLocation } from "react-router-dom";
 import MoviesCard from "./MoviesCard";
 import Preloader from "./Preloader";
@@ -48,6 +48,13 @@ function MoviesCardList({
   useEffect(() => {
     resizeHandler();
   }, []);
+
+  useEffect(() => {
+    const windowSize = window.innerWidth;
+    const countFirst = getQuantity(windowSize);
+    count = countFirst;
+    setShowFoundMovies(foundMovies.slice(0, count.first));
+  }, [foundMovies]);
 
   function addMore() {
     const windowSize = window.innerWidth;

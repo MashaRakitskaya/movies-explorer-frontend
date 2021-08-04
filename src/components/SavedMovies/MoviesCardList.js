@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MoviesCard from "./MoviesCard";
 import Preloader from "../Movies/Preloader";
 
@@ -6,9 +6,13 @@ function MoviesCardList({
   toggleLikeHandler,
   movieAdded,
   savedMovies,
-  foundSaveMovies,
   preloader,
 }) {
+  const [showFoundMovies, setShowFoundMovies] = useState([]);
+  useEffect(() => {
+    setShowFoundMovies([...savedMovies]);
+  }, [savedMovies]);
+
   return (
     <>
       <div className='line'></div>
@@ -16,7 +20,7 @@ function MoviesCardList({
         <Preloader />
       ) : (
         <section className='movies-card-list'>
-          {savedMovies.map((item) => {
+          {showFoundMovies.map((item) => {
             return (
               <MoviesCard
                 key={item._id}
