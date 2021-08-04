@@ -32,7 +32,6 @@ function Movies({
       <section className='movies'>
         {presenceFilms ? (
           <MoviesCardList
-            // foundMovies={foundMovies}
             foundMovies={filter ? filterMovies(foundMovies) : foundMovies}
             preloader={preloader}
             toggleLikeHandler={toggleLikeHandler}
