@@ -18,7 +18,10 @@
 .profile__edit:hover{
     opacity: 0.6;
 }
-
+.profile__edit:disabled{
+    color: #929292;
+    opacity: 1;
+}
 @media (max-width: 780px) {
     .profile__edit {
         margin-top: 210px;

@@ -26,6 +26,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [errorSignUp, setErrorSignUp] = useState(false);
   const [errorSignIn, setErrorSignIn] = useState(false);
+  const [errorProfile, setErrorProfile] = useState(false);
   const [allMovies, setAllMovies] = useState([]);
   const [foundMovies, setFoundMovies] = useState([]);
   const history = useHistory();
@@ -203,9 +204,11 @@ function App() {
   function editUserInfo({ name, email }) {
     MainApi.editUserInfo({ name: name, email: email })
       .then((res) => {
+        setErrorProfile(false);
         setCurrentUser(res);
       })
       .catch((err) => {
+        setErrorProfile(true);
         console.log(err);
       });
   }
@@ -288,6 +291,7 @@ function App() {
 
             <ProtectedRoute
               path='/profile'
+              errorProfile={errorProfile}
               loggedIn={loggedIn}
               component={Profile}
               editUserInfo={editUserInfo}
