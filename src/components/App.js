@@ -21,7 +21,9 @@ import * as MainApi from "../utils/MainApi";
 import * as MoviesApi from "../utils/MoviesApi";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(
+    Boolean(localStorage.getItem("loggedIn")) || false
+  );
   const [currentUser, setCurrentUser] = useState({});
   const [errorSignUp, setErrorSignUp] = useState(false);
   const [errorSignIn, setErrorSignIn] = useState(false);
@@ -31,7 +33,6 @@ function App() {
   const location = useLocation();
   const [preloader, setPreloader] = useState(false);
   const [savedMovies, setSavedMovies] = useState([]);
-  // const [preloader, setPreloader] = useState(false);
   const [presenceFilms, setPresenceFilms] = useState(false);
   const [foundMovies, setFoundMovies] = useState([]);
 
@@ -60,6 +61,8 @@ function App() {
       .then((result) => {
         if (result.token) {
           localStorage.setItem("token", result.token);
+          localStorage.setItem("loggedIn", true);
+
           setLoggedIn(true);
           history.push("/movies");
         }
@@ -83,51 +86,6 @@ function App() {
         }
       });
   }
-
-  // // смотря какой путь будет поиск по разным массивам
-  // useEffect(() => {
-  //   if (location.pathname === "/movies") {
-  //     setArrey(allMovies);
-
-  //     const foundString = localStorage.getItem("string");
-
-  //     if (foundString && !foundMovies.length) {
-  //       handleSearchMovies(foundString);
-  //     }
-  //   } else if (location.pathname === "/saved-movies") {
-  //     setArrey(arrey.length ? arrey : [...savedMovies]);
-  //   }
-  // }, [location.pathname, allMovies]);
-
-  // // ПОИСК
-  // function handleSearchMovies(data) {
-  //   setPreloader(true);
-  //   const filteredArray = arrey.filter((obj) => {
-  //     return (
-  //       obj.description?.toLowerCase().includes(data.toLowerCase()) ||
-  //       obj.director?.toLowerCase().includes(data.toLowerCase()) ||
-  //       obj.nameEN?.toLowerCase().includes(data.toLowerCase()) ||
-  //       obj.nameRU?.toLowerCase().includes(data.toLowerCase())
-  //     );
-  //   });
-
-  //   if (filteredArray.length !== 0) {
-  //     setPresenceFilms(true);
-  //   } else {
-  //     setPresenceFilms(false);
-  //   }
-
-  //   if (location.pathname === "/movies") {
-  //     setFoundMovies(filteredArray);
-  //     localStorage.setItem("string", data);
-  //   } else if (location.pathname === "/saved-movies") {
-  //     setSavedMovies(filteredArray);
-  //   }
-
-  //   setTimeout(() => {
-  //     setPreloader(false);
-  //   }, 300);
-  // }
 
   //ПОЛУЧИТЬ ИНФОРМАЦИЮ О ПОЛЬЗОВАТЕЛЕ ВСЕ ФИЛЬМЫ И СОХРАНЕННЫЕ
   useEffect(() => {
@@ -157,7 +115,6 @@ function App() {
   const saveMovie = (movie) => {
     MainApi.saveMovie(movie)
       .then((res) => {
-        // setSavedMovies(res);
         setSavedMovies([...savedMovies, res]);
       })
       .catch((err) => {
@@ -196,6 +153,7 @@ function App() {
     });
   };
 
+  //Поиск по всем фильмам
   function handleSearchMovies(data) {
     setPreloader(true);
     const filteredArray = allMovies.filter((obj) => {
@@ -224,7 +182,9 @@ function App() {
   useEffect(() => {
     const allMoviesArrey = JSON.parse(localStorage.getItem("allMovies"));
     setPresenceFilms(true);
-    return setFoundMovies(allMoviesArrey);
+    if (allMoviesArrey) {
+      setFoundMovies(allMoviesArrey);
+    }
   }, []);
 
   //редактирование профиля
@@ -240,7 +200,9 @@ function App() {
         console.log(err);
       })
       .finally(() => {
-        setPreloader(false);
+        setTimeout(() => {
+          setPreloader(false);
+        }, 300);
       });
   }
 
@@ -251,6 +213,7 @@ function App() {
     setAllMovies([]);
     setCurrentUser({});
     localStorage.removeItem("allMovies");
+    localStorage.removeItem("loggedIn");
     history.push("/");
   }
 

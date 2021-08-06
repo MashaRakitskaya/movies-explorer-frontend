@@ -4,6 +4,7 @@ import rearch from "../../images/search.svg";
 
 function SearchForm({ onSearch, onFilter }) {
   const [data, setdata] = useState("");
+  const [error, setError] = useState("");
 
   const handleInput = (e) => {
     e.preventDefault();
@@ -11,7 +12,11 @@ function SearchForm({ onSearch, onFilter }) {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSearch(data);
+    if (!data) {
+      setError("Введите ключевое слово");
+    } else {
+      onSearch(data);
+    }
   };
 
   return (
@@ -28,10 +33,16 @@ function SearchForm({ onSearch, onFilter }) {
             placeholder='Фильм'
             className='search-form__input'
           ></input>
+
           <button type='submit' className='search-form__button'></button>
         </form>
         <FilterCheckbox onFilter={onFilter} />
       </div>
+      {error && (
+        <span id='input-error' className='profile__input-error'>
+          {error}
+        </span>
+      )}
     </section>
   );
 }

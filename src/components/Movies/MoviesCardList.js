@@ -65,7 +65,6 @@ function MoviesCardList({
       <div className='line'></div>
       {showFoundMovies.length !== 0 ? (
         <>
-          {" "}
           {preloader ? (
             <Preloader />
           ) : (
