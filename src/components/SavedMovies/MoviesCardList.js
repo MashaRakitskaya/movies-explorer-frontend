@@ -11,21 +11,27 @@ function MoviesCardList({
   return (
     <>
       <div className='line'></div>
-      {preloader ? (
-        <Preloader />
+      {showFoundMovies.length !== 0 ? (
+        <>
+          {preloader ? (
+            <Preloader />
+          ) : (
+            <section className='movies-card-list'>
+              {showFoundMovies.map((item) => {
+                return (
+                  <MoviesCard
+                    key={item._id}
+                    card={item}
+                    toggleLikeHandler={toggleLikeHandler}
+                    movieAdded={movieAdded}
+                  />
+                );
+              })}
+            </section>
+          )}
+        </>
       ) : (
-        <section className='movies-card-list'>
-          {showFoundMovies.map((item) => {
-            return (
-              <MoviesCard
-                key={item._id}
-                card={item}
-                toggleLikeHandler={toggleLikeHandler}
-                movieAdded={movieAdded}
-              />
-            );
-          })}
-        </section>
+        <h3 className='text-nothing-found'>Ничего не найдено</h3>
       )}
       <div className='movies-card-list__box-button'></div>
     </>

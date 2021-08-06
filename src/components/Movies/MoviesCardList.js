@@ -63,34 +63,41 @@ function MoviesCardList({
   return (
     <>
       <div className='line'></div>
-      {preloader ? (
-        <Preloader />
-      ) : (
+      {showFoundMovies.length !== 0 ? (
         <>
-          <section className='movies-card-list'>
-            {showFoundMovies.map((item) => {
-              return (
-                <MoviesCard
-                  card={item}
-                  key={item.id}
-                  toggleLikeHandler={toggleLikeHandler}
-                  savedMovies={savedMovies}
-                  movieAdded={movieAdded}
-                />
-              );
-            })}
-          </section>
-          {showFoundMovies.length < foundMovies.length && (
-            <div className='movies-card-list__box-button'>
-              <button
-                onClick={addMore}
-                className='movies-card-list__button-more'
-              >
-                Еще
-              </button>
-            </div>
+          {" "}
+          {preloader ? (
+            <Preloader />
+          ) : (
+            <>
+              <section className='movies-card-list'>
+                {showFoundMovies.map((item) => {
+                  return (
+                    <MoviesCard
+                      card={item}
+                      key={item.id}
+                      toggleLikeHandler={toggleLikeHandler}
+                      savedMovies={savedMovies}
+                      movieAdded={movieAdded}
+                    />
+                  );
+                })}
+              </section>
+              {showFoundMovies.length < foundMovies.length && (
+                <div className='movies-card-list__box-button'>
+                  <button
+                    onClick={addMore}
+                    className='movies-card-list__button-more'
+                  >
+                    Еще
+                  </button>
+                </div>
+              )}
+            </>
           )}
         </>
+      ) : (
+        <h3 className='text-nothing-found'>Ничего не найдено</h3>
       )}
     </>
   );

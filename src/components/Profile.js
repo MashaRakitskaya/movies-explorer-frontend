@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Navigation from "./Navigation";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import Preloader from "../components/Movies/Preloader";
 
-function Profile({ signOut, editUserInfo, errorProfile }) {
+function Profile({ signOut, editUserInfo, errorProfile, preloader }) {
   const currentUser = React.useContext(CurrentUserContext);
   const [name, setName] = useState(currentUser.name);
   const [email, setEmail] = useState(currentUser.email);
@@ -52,7 +52,6 @@ function Profile({ signOut, editUserInfo, errorProfile }) {
   };
   return (
     <>
-      <Navigation />
       <section className='profile'>
         <div className='profile__container'>
           <h2 className='profile__title'>Привет, {currentUser.name}!</h2>
@@ -99,7 +98,7 @@ function Profile({ signOut, editUserInfo, errorProfile }) {
                 {emailError}
               </span>
             )}
-
+            {preloader && <Preloader />}
             <button
               disabled={
                 (currentUser.name === name && currentUser.email === email) ||
