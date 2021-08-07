@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Form from "./Form";
 import { NavLink } from "react-router-dom";
+import Preloader from "../components/Movies/Preloader";
 
-function Register({ error, onRegister }) {
+function Register({ preloader, error, onRegister }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -146,6 +147,8 @@ function Register({ error, onRegister }) {
             {passwordError}
           </span>
         )}
+
+        {preloader && <Preloader />}
 
         <button
           disabled={!formValid}

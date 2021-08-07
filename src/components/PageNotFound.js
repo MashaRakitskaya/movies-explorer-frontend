@@ -5,7 +5,7 @@ function PageNotFound() {
   const history = useHistory();
 
   function handleClick() {
-    history.push("/");
+    history.goBack();
   }
 
   return (

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Form from "./Form";
 import { NavLink } from "react-router-dom";
+import Preloader from "../components/Movies/Preloader";
 
-function Login({ error, onLogin }) {
+function Login({ preloader, error, onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailDirty, setEmailDirty] = useState(false);
@@ -12,7 +13,6 @@ function Login({ error, onLogin }) {
     "Пароль не должен быть пустым"
   );
   const [formValid, setFormValid] = useState(false);
-
   useEffect(() => {
     if (emailError || passwordError) {
       setFormValid(false);
@@ -65,69 +65,72 @@ function Login({ error, onLogin }) {
   };
 
   return (
-    <section className='child-form'>
-      <Form title='Рады видеть!' onSubmit={handleSubmit} name='login'>
-        <label className='child-form__input-label' htmlFor='email-input'>
-          E-mail
-        </label>
+    <>
+      <section className='child-form'>
+        <Form title='Рады видеть!' onSubmit={handleSubmit} name='login'>
+          <label className='child-form__input-label' htmlFor='email-input'>
+            E-mail
+          </label>
 
-        <input
-          value={email}
-          id='email-input'
-          className='child-form__input'
-          type='email'
-          name='email'
-          required
-          onBlur={(event) => handlerBlur(event)}
-          onChange={(event) => emailHandler(event)}
-        />
+          <input
+            value={email}
+            id='email-input'
+            className='child-form__input'
+            type='email'
+            name='email'
+            required
+            onBlur={(event) => handlerBlur(event)}
+            onChange={(event) => emailHandler(event)}
+          />
 
-        {emailDirty && emailError && (
-          <span id='email-input-error' className='child-form__input-error'>
-            {emailError}
-          </span>
-        )}
-        <label className='child-form__input-label' htmlFor='password-input'>
-          Пароль
-        </label>
-        <input
-          value={password}
-          id='password-input'
-          className='child-form__input'
-          type='password'
-          name='password'
-          required
-          onBlur={(event) => handlerBlur(event)}
-          onChange={(event) => passwordHandler(event)}
-        />
-        {passwordDirty && passwordError && (
-          <span id='password-input-error' className='child-form__input-error'>
-            {passwordError}
-          </span>
-        )}
+          {emailDirty && emailError && (
+            <span id='email-input-error' className='child-form__input-error'>
+              {emailError}
+            </span>
+          )}
+          <label className='child-form__input-label' htmlFor='password-input'>
+            Пароль
+          </label>
+          <input
+            value={password}
+            id='password-input'
+            className='child-form__input'
+            type='password'
+            name='password'
+            required
+            onBlur={(event) => handlerBlur(event)}
+            onChange={(event) => passwordHandler(event)}
+          />
+          {passwordDirty && passwordError && (
+            <span id='password-input-error' className='child-form__input-error'>
+              {passwordError}
+            </span>
+          )}
+          {preloader && <Preloader />}
 
-        <button
-          disabled={!formValid}
-          type='submit'
-          className='child-form__save'
-          value='Войти'
-        >
-          Войти
-        </button>
+          <button
+            disabled={!formValid}
+            type='submit'
+            className='child-form__save'
+            value='Войти'
+          >
+            Войти
+          </button>
 
-        {error && (
-          <span id='submit-error' className='child-form__input-error'>
-            Ошибка входа
-          </span>
-        )}
-        <p className='registration-question'>
-          Ещё не зарегистрированы?
-          <NavLink to='/signup' className='registration-question__link'>
-            Регистрация
-          </NavLink>
-        </p>
-      </Form>
-    </section>
+          {error && (
+            <span id='submit-error' className='child-form__input-error'>
+              Ошибка входа
+            </span>
+          )}
+          <p className='registration-question'>
+            Ещё не зарегистрированы?
+            <NavLink to='/signup' className='registration-question__link'>
+              Регистрация
+            </NavLink>
+          </p>
+        </Form>
+      </section>
+    </>
   );
 }
 export default Login;

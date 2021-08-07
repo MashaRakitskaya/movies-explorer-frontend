@@ -16,6 +16,7 @@ function SearchForm({ onSearch, onFilter }) {
       setError("Введите ключевое слово");
     } else {
       onSearch(data);
+      setError("");
     }
   };
 

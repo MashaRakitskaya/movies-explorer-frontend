@@ -35,6 +35,7 @@ function App() {
   const [savedMovies, setSavedMovies] = useState([]);
   const [presenceFilms, setPresenceFilms] = useState(false);
   const [foundMovies, setFoundMovies] = useState([]);
+  const [preloaderAuth, setPreloaderAuth] = useState(false);
 
   // ПРОВЕРКА ТОКЕНА
   useEffect(() => {
@@ -57,12 +58,12 @@ function App() {
 
   // РЕГИСТРАЦИЯ
   function handleLogin(email, password) {
+    setPreloaderAuth(true);
     MainApi.authorize(email, password)
       .then((result) => {
         if (result.token) {
           localStorage.setItem("token", result.token);
           localStorage.setItem("loggedIn", true);
-
           setLoggedIn(true);
           history.push("/movies");
         }
@@ -70,11 +71,17 @@ function App() {
       .catch((err) => {
         setErrorSignIn(true);
         console.log(err);
+      })
+      .finally(() => {
+        setTimeout(() => {
+          setPreloaderAuth(false);
+        }, 300);
       });
   }
 
   // ЛОГИН
   function handleRegister(name, email, password) {
+    setPreloaderAuth(true);
     MainApi.register(name, email, password)
       .then(() => {
         handleLogin(email, password);
@@ -84,10 +91,15 @@ function App() {
           setErrorSignUp(true);
           console.log(err);
         }
+      })
+      .finally(() => {
+        setTimeout(() => {
+          setPreloaderAuth(false);
+        }, 300);
       });
   }
 
-  //ПОЛУЧИТЬ ИНФОРМАЦИЮ О ПОЛЬЗОВАТЕЛЕ ВСЕ ФИЛЬМЫ И СОХРАНЕННЫЕ
+  // ПОЛУЧИТЬ ИНФОРМАЦИЮ О ПОЛЬЗОВАТЕЛЕ ВСЕ ФИЛЬМЫ И СОХРАНЕННЫЕ
   useEffect(() => {
     setPreloader(true);
     if (loggedIn) {
@@ -153,7 +165,7 @@ function App() {
     });
   };
 
-  //Поиск по всем фильмам
+  // Поиск по всем фильмам
   function handleSearchMovies(data) {
     setPreloader(true);
     const filteredArray = allMovies.filter((obj) => {
@@ -187,7 +199,7 @@ function App() {
     }
   }, []);
 
-  //редактирование профиля
+  // редактирование профиля
   function editUserInfo({ name, email }) {
     setPreloader(true);
     MainApi.editUserInfo({ name: name, email: email })
@@ -208,6 +220,7 @@ function App() {
 
   // ВЫХОД
   function handleSignOut() {
+    setPreloader(false);
     localStorage.removeItem("token");
     setLoggedIn(false);
     setAllMovies([]);
@@ -265,10 +278,18 @@ function App() {
             />
 
             <Route path='/signup'>
-              <Register error={errorSignUp} onRegister={handleRegister} />
+              <Register
+                error={errorSignUp}
+                onRegister={handleRegister}
+                preloader={preloaderAuth}
+              />
             </Route>
             <Route path='/signin'>
-              <Login error={errorSignIn} onLogin={handleLogin} />
+              <Login
+                error={errorSignIn}
+                onLogin={handleLogin}
+                preloader={preloaderAuth}
+              />
             </Route>
 
             <Route path='/404'>

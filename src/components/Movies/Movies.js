@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import MoviesCardList from "./MoviesCardList";
 import SearchForm from "./SearchForm";
 import { DURATION_MOVIE } from "../../utils/constants";
-import Preloader from "./Preloader";
 
 function Movies({
   toggleLikeHandler,
@@ -25,27 +24,21 @@ function Movies({
 
   return (
     <>
-      {preloader ? (
-        <Preloader />
-      ) : (
-        <>
-          <SearchForm onSearch={handleSearchMovies} onFilter={onFilter} />
+      <SearchForm onSearch={handleSearchMovies} onFilter={onFilter} />
 
-          <section className='movies'>
-            {presenceFilms ? (
-              <MoviesCardList
-                foundMovies={filter ? filterMovies(foundMovies) : foundMovies}
-                preloader={preloader}
-                toggleLikeHandler={toggleLikeHandler}
-                savedMovies={savedMovies}
-                movieAdded={movieAdded}
-              />
-            ) : (
-              <h3 className='text-nothing-found'>Ничего не найдено</h3>
-            )}
-          </section>
-        </>
-      )}
+      <section className='movies'>
+        {presenceFilms ? (
+          <MoviesCardList
+            foundMovies={filter ? filterMovies(foundMovies) : foundMovies}
+            preloader={preloader}
+            toggleLikeHandler={toggleLikeHandler}
+            savedMovies={savedMovies}
+            movieAdded={movieAdded}
+          />
+        ) : (
+          <h3 className='text-nothing-found'>Ничего не найдено</h3>
+        )}
+      </section>
     </>
   );
 }
