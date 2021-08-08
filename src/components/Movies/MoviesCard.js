@@ -1,166 +1,43 @@
 import React from "react";
-import pic from "../../images/pic__COLOR_pic.png";
+import { URL_NOMOREPATIES } from "../../utils/constants";
 
-function MoviesCard() {
-  function handleClickLike(e) {
-    e.target.classList.toggle("movies-card__save_pressed");
+function MoviesCard({ card, toggleLikeHandler, movieAdded }) {
+  let added = movieAdded(card);
+
+  const deleteSaveClick = (e) => {
+    e.preventDefault();
+    toggleLikeHandler(card, !added);
+  };
+
+  function timeHandler(data) {
+    let hour = Math.trunc(data / 60);
+    let minut = data % 60;
+    return hour + "ч " + minut + "м";
   }
 
   return (
-    <>
-      <article className='movies-card'>
-        <div className='movies-card__discription'>
-          <h2 className='movies-card__title'>33 слова о дизайне</h2>
-          <p className='movies-card__time'>1ч 47м</p>
-          <button
-            onClick={handleClickLike}
-            className='movies-card__save'
-            type='button'
-          ></button>
-        </div>
+    <article className='movies-card'>
+      <div className='movies-card__discription'>
+        <h2 className='movies-card__title'>{card.nameRU}</h2>
+        <p className='movies-card__time'>{timeHandler(card.duration)}</p>
+        <button
+          onClick={deleteSaveClick}
+          className={
+            added
+              ? "movies-card__save movies-card__save_pressed"
+              : "movies-card__save"
+          }
+          type='button'
+        ></button>
+      </div>
+      <a href={card.trailerLink} rel='noreferrer' target='_blank'>
         <img
           className='movies-card__image'
-          src={pic}
+          src={`${URL_NOMOREPATIES}` + card.image.url}
           alt='Фото заставка фильма'
         />
-      </article>
-
-      <article className='movies-card'>
-        <div className='movies-card__discription'>
-          <h2 className='movies-card__title'>33 слова о дизайне</h2>
-          <p className='movies-card__time'>1ч 47м</p>
-          <button
-            onClick={handleClickLike}
-            className='movies-card__save'
-            type='button'
-          ></button>
-        </div>
-        <img
-          className='movies-card__image'
-          src={pic}
-          alt='Фото заставка фильма'
-        />
-      </article>
-
-      <article className='movies-card'>
-        <div className='movies-card__discription'>
-          <h2 className='movies-card__title'>33 слова о дизайне</h2>
-          <p className='movies-card__time'>1ч 47м</p>
-          <button
-            onClick={handleClickLike}
-            className='movies-card__save'
-            type='button'
-          ></button>
-        </div>
-        <img
-          className='movies-card__image'
-          src={pic}
-          alt='Фото заставка фильма'
-        />
-      </article>
-
-      <article className='movies-card'>
-        <div className='movies-card__discription'>
-          <h2 className='movies-card__title'>33 слова о дизайне</h2>
-          <p className='movies-card__time'>1ч 47м</p>
-          <button
-            onClick={handleClickLike}
-            className='movies-card__save'
-            type='button'
-          ></button>
-        </div>
-        <img
-          className='movies-card__image'
-          src={pic}
-          alt='Фото заставка фильма'
-        />
-      </article>
-
-      <article className='movies-card'>
-        <div className='movies-card__discription'>
-          <h2 className='movies-card__title'>33 слова о дизайне</h2>
-          <p className='movies-card__time'>1ч 47м</p>
-          <button
-            onClick={handleClickLike}
-            className='movies-card__save'
-            type='button'
-          ></button>
-        </div>
-        <img
-          className='movies-card__image'
-          src={pic}
-          alt='Фото заставка фильма'
-        />
-      </article>
-
-      <article className='movies-card'>
-        <div className='movies-card__discription'>
-          <h2 className='movies-card__title'>33 слова о дизайне</h2>
-          <p className='movies-card__time'>1ч 47м</p>
-          <button
-            onClick={handleClickLike}
-            className='movies-card__save'
-            type='button'
-          ></button>
-        </div>
-        <img
-          className='movies-card__image'
-          src={pic}
-          alt='Фото заставка фильма'
-        />
-      </article>
-
-      <article className='movies-card'>
-        <div className='movies-card__discription'>
-          <h2 className='movies-card__title'>33 слова о дизайне</h2>
-          <p className='movies-card__time'>1ч 47м</p>
-          <button
-            onClick={handleClickLike}
-            className='movies-card__save'
-            type='button'
-          ></button>
-        </div>
-        <img
-          className='movies-card__image'
-          src={pic}
-          alt='Фото заставка фильма'
-        />
-      </article>
-
-      <article className='movies-card'>
-        <div className='movies-card__discription'>
-          <h2 className='movies-card__title'>33 слова о дизайне</h2>
-          <p className='movies-card__time'>1ч 47м</p>
-          <button
-            onClick={handleClickLike}
-            className='movies-card__save'
-            type='button'
-          ></button>
-        </div>
-        <img
-          className='movies-card__image'
-          src={pic}
-          alt='Фото заставка фильма'
-        />
-      </article>
-
-      <article className='movies-card'>
-        <div className='movies-card__discription'>
-          <h2 className='movies-card__title'>33 слова о дизайне</h2>
-          <p className='movies-card__time'>1ч 47м</p>
-          <button
-            onClick={handleClickLike}
-            className='movies-card__save'
-            type='button'
-          ></button>
-        </div>
-        <img
-          className='movies-card__image'
-          src={pic}
-          alt='Фото заставка фильма'
-        />
-      </article>
-    </>
+      </a>
+    </article>
   );
 }
 export default MoviesCard;

@@ -20,10 +20,18 @@ function Navigation() {
       </NavLink>
       <nav className='header-navigation'>
         <div className='header-navigation__container'>
-          <NavLink to='/movies' className='header-navigation__movies'>
+          <NavLink
+            activeClassName='header-navigation__movies_active'
+            to='/movies'
+            className='header-navigation__movies'
+          >
             Фильмы
           </NavLink>
-          <NavLink to='/saved-movies' className='header-navigation__movies'>
+          <NavLink
+            activeClassName='header-navigation__movies_active'
+            to='/saved-movies'
+            className='header-navigation__movies'
+          >
             Сохранённые фильмы
           </NavLink>
         </div>

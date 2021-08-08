@@ -1,0 +1,10 @@
+.header-navigation__movies_active {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 18px;
+    color: #3DDC84;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+    margin-right: 16px;
+}

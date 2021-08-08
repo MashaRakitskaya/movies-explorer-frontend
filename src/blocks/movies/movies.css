@@ -3,6 +3,7 @@
     padding-left: 70px;
     padding-right: 70px;
     padding-bottom: 80px;
+    min-height: calc(100vh - 80px);
 }
 
 @media (max-width: 780px) {

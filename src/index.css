@@ -91,6 +91,7 @@
 @import url(./blocks/header-navigation/__button/header-navigation__button.css);
 @import url(./blocks/header-navigation/__container/header-navigation__container.css);
 @import url(./blocks/header-navigation/__movies/header-navigation__movies.css);
+@import url(./blocks/header-navigation/__movies/_active/header-navigation__movies_active.css);
 
 @import url(./blocks/profile/profile.css);
 @import url(./blocks/profile/__container/profile__container.css);
@@ -149,3 +150,5 @@
 
 @import url(./blocks/burger-menu-under/burger-menu-under.css);
 @import url(./blocks/burger-menu-under/_open/burger-menu-under_open.css);
+
+@import url(./blocks/text-nothing-found/text-nothing-found.css);
