@@ -1,6 +1,6 @@
 # Movies explorer
 
-### Project description:
+### Description:
 A service where you can find movies on demand and save them in your personal account.
 
 ### Technologies:
